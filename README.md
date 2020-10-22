@@ -3,7 +3,7 @@
 This repo intend to host the Frontend of the app REWEAR. Written with React JS. </br>
 Please address any questions/comments to admin@rewear.com.
 
-## INSTALL, RUN LOCALY & DEPLOY
+## INSTALL, RUN LOCALLY & DEPLOY
 
 Node.js (incl `npm`) will be needed. [https://nodejs.org/en/download/]</br>
 Run `npm install` to fetch and install all dependencies listed in the `package.json` file.

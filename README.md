@@ -3,11 +3,11 @@
 This repo intend to host the Frontend of the app REWEAR. Written with React JS. </br>
 Please address any questions/comments to admin@rewear.com.
 
-## INSTALL/RUN LOCALY
+## INSTALL, RUN LOCALY & DEPLOY
 
 Node.js (incl `npm`) will be needed. [https://nodejs.org/en/download/]</br>
 Run `npm install` to fetch and install all dependencies listed in the `package.json` file.
-With `npm run dev` you can start the server on your machine.
+With `npm start` you can start the server on your machine. With `npm deploy` you can deploy the app to Heroku.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -13,7 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## RESSOURCE
 
-### `npm run eject`
+#### npm run eject
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 

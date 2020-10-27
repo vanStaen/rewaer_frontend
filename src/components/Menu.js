@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { Menu } from "antd";
+import { Menu, Avatar, Badge } from "antd";
 import {
   UserOutlined,
   CameraOutlined,
@@ -28,7 +28,16 @@ class MainMenu extends Component {
         onClick={this.handleClick}
         selectedKeys={[current]}
         mode="horizontal"
+        style={{ color: "#6C917D", margin: "5px 0px" }}
       >
+        <Menu.Item key="profile">
+          <Badge count={5} offset={[0, 5]}>
+            <Avatar
+              src="https://avatars0.githubusercontent.com/u/12551446?s=460"
+              size="large"
+            />
+          </Badge>
+        </Menu.Item>
         <Menu.Item key="auth" icon={<UserOutlined />}>
           <NavLink to="/auth"> Authenticate</NavLink>
         </Menu.Item>

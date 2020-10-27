@@ -47,10 +47,10 @@ class MenuBar extends Component {
         <Menu.Item key="items" icon={<SkinOutlined />}>
           <NavLink to="/items"> Items</NavLink>
         </Menu.Item>
-        <Menu.Item key="mail" icon={<TeamOutlined />} disabled>
+        <Menu.Item key="mail" icon={<MailOutlined />} disabled>
           <NavLink to="/mail"> Mail</NavLink>
         </Menu.Item>
-        <Menu.Item key="friends" icon={<MailOutlined />} disabled>
+        <Menu.Item key="friends" icon={<TeamOutlined />} disabled>
           <NavLink to="/friends"> Friends</NavLink>
         </Menu.Item>
       </Menu>

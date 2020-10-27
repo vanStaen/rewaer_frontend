@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 
-class ItemsPage extends Component {
+class LooksPage extends Component {
   render() {
-    return <h1>Items Page</h1>;
+    return (
+      <div>
+        <h1>Items Page</h1>
+      </div>
+    );
   }
 }
 
-export default ItemsPage;
+export default LooksPage;

@@ -12,8 +12,8 @@ import "./App.css";
 function App() {
   return (
     <div>
-      <MainMenu />
       <BrowserRouter>
+        <MainMenu />
         <Switch>
           <Redirect from="/" to="/auth" exact />
           <Route path="/auth" component={AuthPage} />

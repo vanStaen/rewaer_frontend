@@ -11,6 +11,13 @@ With `npm start` you can start the server on your machine. With `npm deploy` you
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Runninng the command 'npm run deploy' will trigger the deployment of the master branch on Heroku. The standart detected node.js buildpack seems not to work for react app. To fix this, do the following in ther Heroku CLI:
+
+```
+heroku buildpacks:clear
+heroku buildpacks:set https://github.com/mars/create-react-app-buildpack
+```
+
 ## RESSOURCE
 
 #### npm run eject

@@ -11,7 +11,7 @@ import {
 
 const { SubMenu } = Menu;
 
-class MainMenu extends Component {
+class MenuBar extends Component {
   state = {
     current: "mail",
   };
@@ -31,7 +31,7 @@ class MainMenu extends Component {
         style={{ color: "#6C917D", margin: "5px 0px" }}
       >
         <Menu.Item key="profile">
-          <Badge count={5} offset={[0, 5]}>
+          <Badge count={0} offset={[0, 5]}>
             <Avatar
               src="https://avatars0.githubusercontent.com/u/12551446?s=460"
               size="large"
@@ -58,4 +58,4 @@ class MainMenu extends Component {
   }
 }
 
-export default MainMenu;
+export default MenuBar;

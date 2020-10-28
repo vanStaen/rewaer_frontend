@@ -1,28 +1,62 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  MailOutlined,
+  LockOutlined,
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+} from "@ant-design/icons";
+
 import "./LoginForm.css";
 
 class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogin: true,
+    };
+  }
+
+  switchModeHandler = () => {
+    this.setState((prevState) => {
+      return { isLogin: !prevState.isLogin };
+    });
+  };
+
   render() {
     const submitHandler = (values) => {
       const email = values.email;
       const password = values.password;
-      console.log(email, password);
 
-      const requestBody = {
+      let requestBody = {
         query: `
-          query {
-            login(email:"${email}",password:"${password}"){
-              userId
-              token
-              tokenExpiration
+            query {
+              login(email:"${email}",password:"${password}"){
+                userId
+                token
+                tokenExpiration
+              }
             }
-          }
-          `,
+            `,
       };
 
-      fetch("https://rewaer-backend.herokuapp.com/graphql", {
+      if (!this.state.isLogin) {
+        const username = values.username;
+        requestBody = {
+          query: `
+              mutation {
+                  createUser(
+                    userInput: { name: "${username}", email: "${email}", password: "${password}" }
+                  ) {
+                    name
+                  }
+                }
+                `,
+        };
+      }
+
+      fetch("http://localhost:5000/graphql", {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {
@@ -53,6 +87,22 @@ class LoginForm extends Component {
         onFinish={submitHandler}
       >
         <Form.Item
+          name="username"
+          hidden={this.state.isLogin}
+          rules={[
+            {
+              required: !this.state.isLogin,
+              message: "How should we call you?",
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Name"
+          />
+        </Form.Item>
+
+        <Form.Item
           name="email"
           rules={[
             {
@@ -63,7 +113,7 @@ class LoginForm extends Component {
           ]}
         >
           <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
+            prefix={<MailOutlined className="site-form-item-icon" />}
             placeholder="Email"
           />
         </Form.Item>
@@ -76,31 +126,35 @@ class LoginForm extends Component {
             },
           ]}
         >
-          <Input
+          <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
+            placeholder="input Password"
+            iconRender={(visible) =>
+              visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+            }
           />
         </Form.Item>
-        <Form.Item>
+        <Form.Item hidden={!this.state.isLogin}>
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          <a className="login-form-forgot" href="">
+          <a className="login-form-forgot" href="#">
             Forgot password
           </a>
         </Form.Item>
-
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
             className="login-form-button"
           >
-            Log in
+            {this.state.isLogin ? "Log in" : "Create account"}
           </Button>
-          Or <a href="">register now!</a>
+          Or{" "}
+          <a href="#" onClick={this.switchModeHandler}>
+            {this.state.isLogin ? "register now!" : "log into your account!"}
+          </a>
         </Form.Item>
       </Form>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AuthContext from "../context/auth-context";
 import { Form, Input, Button, Checkbox } from "antd";
 import {
   UserOutlined,
@@ -17,6 +18,8 @@ class LoginForm extends Component {
       isLogin: true,
     };
   }
+
+  static contextType = AuthContext;
 
   switchModeHandler = () => {
     this.setState((prevState) => {
@@ -70,7 +73,14 @@ class LoginForm extends Component {
           return res.json();
         })
         .then((resData) => {
-          console.log(resData);
+          if (resData.data.login.token) {
+            this.context.login(
+              resData.data.login.token,
+              resData.data.login.userId,
+              resData.data.login.tokenExpiration
+            );
+            console.log(resData);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -139,8 +149,8 @@ class LoginForm extends Component {
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
 
-          <a className="login-form-forgot" href="#">
-            Forgot password
+          <a className="login-form-forgot" href="/#">
+            Recover password
           </a>
         </Form.Item>
         <Form.Item>
@@ -152,7 +162,7 @@ class LoginForm extends Component {
             {this.state.isLogin ? "Log in" : "Create account"}
           </Button>
           Or{" "}
-          <a href="#" onClick={this.switchModeHandler}>
+          <a href="/#" onClick={this.switchModeHandler}>
             {this.state.isLogin ? "register now!" : "log into your account!"}
           </a>
         </Form.Item>

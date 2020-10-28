@@ -11,7 +11,7 @@ import {
 
 class MenuBar extends Component {
   state = {
-    current: "mail",
+    current: undefined,
   };
 
   handleClick = (e) => {

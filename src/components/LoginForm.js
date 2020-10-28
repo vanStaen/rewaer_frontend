@@ -59,7 +59,7 @@ class LoginForm extends Component {
         };
       }
 
-      fetch("http://localhost:5000/graphql", {
+      fetch(process.env.REACT_APP_API_URL, {
         method: "POST",
         body: JSON.stringify(requestBody),
         headers: {

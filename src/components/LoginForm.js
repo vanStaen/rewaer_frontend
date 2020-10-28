@@ -4,15 +4,31 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import "./LoginForm.css";
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.user = React.createRef();
-    this.password = React.createRef();
-  }
   render() {
-    const onFinish = (values) => {
-      this.password = values.username;
-      this.user = values.password;
+    const submitHandler = (values) => {
+      const email = values.email;
+      const password = values.password;
+      console.log(email, password);
+
+      const requestBody = {
+        query: `
+          query {
+            login(email:"${email}",password:"${password}"){
+              userId
+              token
+              tokenExpiration
+            }
+          }
+          `,
+      };
+
+      fetch("http://localhost:5000/graphql", {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
     };
 
     return (
@@ -22,20 +38,21 @@ class LoginForm extends Component {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
+        onFinish={submitHandler}
       >
         <Form.Item
-          name="username"
+          name="email"
           rules={[
             {
+              type: "email",
               required: true,
-              message: "Please input your Username!",
+              message: "Please input your Email!",
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder="Email"
           />
         </Form.Item>
         <Form.Item

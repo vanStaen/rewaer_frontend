@@ -9,6 +9,7 @@ Rewaer Front End
   - [ ] Show success message in App
   - [ ] Send Email to new user user
 - [ ] Restore Pwd feature
+- [ ] Persist token in local Session
 
 ## Completed ✓
 

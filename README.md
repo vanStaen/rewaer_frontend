@@ -29,3 +29,22 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+#### Overwrite Antd standart color
+
+AntD comes with a standart babyBlue custom color scheme: One can overwrite and customise every single componennt, or change the whole color-theme of ant. Therefore follow the following steps:
+
+1. Install the package _less_: `sudo npm install less -g`.
+2. Create a file `rewaer-theme.less` under `/node_module/antd/dist`.
+3. Fill the file with the 3 lines (were the color code are the new one you want0).
+
+```
+@import “./antd.less”;
+@primary-color: #6C917D ;
+@link-color: #6C917D;
+```
+
+4. From the directory `/node_module/antd/dist` run `lessc -js my-theme.less ../../../src/style/rewaer-antd.css`.
+5. In `app.css`, update the first import to target the file created file: `@import "../src/style/rewaer-antd.css";`
+
+Link to te Original tutorial: https://medium.com/@okoriechinedusunday/a-baby-guide-to-overriding-antdesign-theme-and-color-aa6df1f85e0

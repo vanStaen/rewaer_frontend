@@ -9,8 +9,6 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
-const { SubMenu } = Menu;
-
 class MenuBar extends Component {
   state = {
     current: "mail",
@@ -39,7 +37,7 @@ class MenuBar extends Component {
           </Badge>
         </Menu.Item>
         <Menu.Item key="auth" icon={<UserOutlined />}>
-          <NavLink to="/auth"> Authenticate</NavLink>
+          <NavLink to="/auth"> Login</NavLink>
         </Menu.Item>
         <Menu.Item key="looks" icon={<CameraOutlined />}>
           <NavLink to="/looks"> Looks</NavLink>

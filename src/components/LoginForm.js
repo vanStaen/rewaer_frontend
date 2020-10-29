@@ -162,9 +162,9 @@ class LoginForm extends Component {
             {this.state.isLogin ? "Log in" : "Create account"}
           </Button>
           Or{" "}
-          <a href="/#" onClick={this.switchModeHandler}>
+          <span style={{ color: "#6C917D", cursor:"pointer" }} onClick={this.switchModeHandler}>
             {this.state.isLogin ? "register now!" : "log into your account!"}
-          </a>
+          </span>
         </Form.Item>
       </Form>
     );

@@ -28,27 +28,22 @@ class InfoPage extends Component {
           What is Rewær?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
-          Renew your style without buying: only trees should get new leaves
-          every years.{" "}
-          <Text mark>
-            Renew your style without buying: only trees should get new leaves
-            every years.
-          </Text>{" "}
-          Renew your style without buying: only trees should get new leaves
-          every years. Renew your style without buying: only trees should get
-          new leaves every years. Renew your style without buying: only trees
-          should get new leaves every years. Renew your style without buying:
-          only trees should get new leaves every years. Renew your style without
-          buying: only trees should get new leaves every years. Renew your style
-          without buying: only trees should get new leaves every years. Renew
-          your style without buying: only trees should get new leaves every
-          years. Renew your style without buying: only trees should get new
-          leaves every years. Renew your style without buying: only trees should
-          get new leaves every years.
+          Rewær is promoting green fashion based on the principle that{" "}
+          <span style={{ background: "#C8D6CF" }}>
+            the most sustainable piece of clothing is the one you already have
+          </span>
+          . Offered as a multiplatform application: - Web, iOS and Android. It
+          aim to help at organising your garderobe, keep track of your favorite
+          style and helps you discover new combination to wear the clothes you
+          already have. It has two main components: fashion organisator and
+          social media. Those two are linked as you can authorise friends to
+          have a look in your garderobe to help you create looks based on your
+          items. You can also use the app to open your garderobe in-real-life
+          and share items with your hand pick best friends.
         </Paragraph>
 
         <Divider orientation="left" plain>
-          Why do you need Rewær?
+          Why do you need it?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           Renew your style without buying: only trees should get new leaves

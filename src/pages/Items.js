@@ -5,10 +5,6 @@ class LooksPage extends Component {
     return (
       <div>
         <h1>Items Page</h1>
-        <small>
-          You are running this application in <b>{process.env.NODE_ENV}</b>{" "}
-          mode, linked with <b>{process.env.REACT_APP_API_URL}</b>.
-        </small>
       </div>
     );
   }

@@ -66,6 +66,9 @@ class App extends Component {
                     <Redirect from="/" to="/profile" exact />
                   )}
                   {this.state.token && (
+                    <Redirect from="/auth" to="/profile" exact />
+                  )}
+                  {this.state.token && (
                     <Route path="/looks" component={LooksPage} />
                   )}
                   {this.state.token && (

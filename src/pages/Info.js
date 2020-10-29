@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Typography } from "antd";
+import { Typography, Divider } from "antd";
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -15,12 +15,18 @@ class InfoPage extends Component {
             years.
           </Text>
         </Paragraph>
-        <Paragraph copyable={{ text: "admin@rewear.com" }}>
-          Please address any questions/comments to{" "}
-          <a href="mailto:admin@rewear.com">admin@rewear.com</a>.
+        <Paragraph
+          copyable={{
+            text: "admin@rewear.com",
+            tooltips: ["Copy email", "Email copied!"],
+          }}
+        >
+          Please address any questions/comments to admin@rewear.com.
         </Paragraph>
 
-        <Title level={5}>What is rewaer?</Title>
+        <Divider orientation="left" plain>
+          What is Rewær?
+        </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           Renew your style without buying: only trees should get new leaves
           every years.{" "}
@@ -41,7 +47,9 @@ class InfoPage extends Component {
           get new leaves every years.
         </Paragraph>
 
-        <Title level={5}>Why is rewaer?</Title>
+        <Divider orientation="left" plain>
+          Why do you need Rewær?
+        </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           Renew your style without buying: only trees should get new leaves
           every years. Renew your style without buying: only trees should get
@@ -62,7 +70,9 @@ class InfoPage extends Component {
           years.
         </Paragraph>
 
-        <Title level={5}>how far is rewaer?</Title>
+        <Divider orientation="left" plain>
+          How far are we?
+        </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
           Renew your style without buying: only trees should get new leaves
           every years. Renew your style without buying: only trees should get
@@ -78,6 +88,25 @@ class InfoPage extends Component {
           trees should get new leaves every years. Renew your style without
           buying: only trees should get new leaves every years.
         </Paragraph>
+
+        <Divider orientation="left" plain>
+          Debuging
+        </Divider>
+
+        <Paragraph>
+          You are running this application in {process.env.NODE_ENV}
+          mode, linked with {process.env.REACT_APP_API_URL}.
+        </Paragraph>
+
+        {/*
+        <Text type="secondary">
+          Rewær
+          <Divider type="vertical" />
+          Berlin
+          <Divider type="vertical" />
+          ©2020 All Rights Reserved
+        </Text>
+        */}
       </div>
     );
   }

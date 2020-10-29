@@ -94,8 +94,8 @@ class InfoPage extends Component {
         </Divider>
 
         <Paragraph>
-          You are running this application in {process.env.NODE_ENV}
-          mode, linked with {process.env.REACT_APP_API_URL}.
+          You are running this application in {process.env.NODE_ENV} mode,
+          linked with {process.env.REACT_APP_API_URL}.
         </Paragraph>
 
         {/*

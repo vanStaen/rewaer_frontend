@@ -37,7 +37,7 @@ class MenuBar extends Component {
       >
         {this.context.token ? (
           <Menu.Item key="profile" style={{ float: "right" }}>
-            <Badge count={9} offset={[0, 5]}>
+            <Badge count={5} offset={[0, 5]}>
               <Avatar
                 src="https://avatars0.githubusercontent.com/u/12551446?s=460"
                 size="large"
@@ -57,6 +57,7 @@ class MenuBar extends Component {
           key="looks"
           icon={<CameraOutlined />}
           disabled={!this.context.token}
+          style={{ float: "left" }}
         >
           <NavLink to="/looks"> Looks</NavLink>
         </Menu.Item>
@@ -64,13 +65,24 @@ class MenuBar extends Component {
           key="items"
           icon={<SkinOutlined />}
           disabled={!this.context.token}
+          style={{ float: "left" }}
         >
           <NavLink to="/items"> Items</NavLink>
         </Menu.Item>
-        <Menu.Item key="mail" icon={<MailOutlined />} disabled>
+        <Menu.Item
+          key="mail"
+          icon={<MailOutlined />}
+          disabled
+          style={{ float: "left" }}
+        >
           <NavLink to="/mail"> Mail</NavLink>
         </Menu.Item>
-        <Menu.Item key="friends" icon={<TeamOutlined />} disabled>
+        <Menu.Item
+          key="friends"
+          icon={<TeamOutlined />}
+          disabled
+          style={{ float: "left" }}
+        >
           <NavLink to="/friends"> Friends</NavLink>
         </Menu.Item>
       </Menu>

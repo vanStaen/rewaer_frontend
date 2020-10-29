@@ -10,9 +10,10 @@ class InfoPage extends Component {
         <Title level={2}>Rewær, the green Fashion App</Title>
         <Paragraph>
           <Text type="secondary">
-            The Fashion App for minimalistic and sustainable geniuses! <br/> Renew
-            your garderobe without buying: only trees should get new leaves every
-            years.
+            The Fashion App for minimalistic and sustainable geniuses! <br/> 
+            <span style={{ background: "#6d917e", color:"#FFFFFF", padding: "2px 3px" }}> 
+            Renew your garderobe without buying: 
+            only trees should get new leaves every years.</span>
           </Text>
         </Paragraph>
         <Paragraph
@@ -24,7 +25,7 @@ class InfoPage extends Component {
           Please address any questions/comments to <b>admin@rewear.com.</b>
         </Paragraph>
 
-        <Divider orientation="left" plain>
+        <Divider plain>
           What is Rewær?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
@@ -32,9 +33,9 @@ class InfoPage extends Component {
           <span style={{ background: "#C8D6CF" }}>
             the most sustainable piece of clothing is the one you already have
           </span>
-          . Offered as a multiplatform application: Web, iOS and Android. It
-          aim to help at organising your garderobe, keep track of your favorite
-          style and helps you discover new combination to wear the clothes you
+          . Offered as a multiplatform application - Web, iOS and Android - it
+          aims at organising your garderobe, keep track of your favorites
+          looks and helps you discover new combination to wear the clothes you
           already have. It has two main components: fashion organisator and
           social media. Those two are linked as you can authorise friends to
           have a look in your garderobe to help you create looks based on your
@@ -42,7 +43,7 @@ class InfoPage extends Component {
           and share items with your hand pick best friends.
         </Paragraph>
 
-        <Divider orientation="left" plain>
+        <Divider plain>
           Why do you need it?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
@@ -60,16 +61,17 @@ class InfoPage extends Component {
         clothes, and have the feeling of a brand new garderobe, without spending a cent!{" "}
         </Paragraph>
 
-        <Divider orientation="left" plain>
+        <Divider plain>
           How far are we?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
-          We are still working on the first version, with the minimum viables feature. 
-          The first prototype will be open of any willing beta tester!{" "}
+          We are still working on a first version including the minimum viables features. 
+          The first prototype will be ready soon and open to any willing beta tester!{" "}
         <span style={{ background: "#C8D6CF" }}>You can already create an account
         </span>,
-          and we will ping out when it's ready for testing! The first feature includes
-          the main garderobe functions: mangement of <em>Items</em> and <em>Looks</em>.
+          and we will ping out when it's ready! The first feature includes
+          the main garderobe functions: mangement of <em>Items</em> and <em>Looks</em>, and basic
+          social fonctionalities.
         </Paragraph>
 
         {/*
@@ -84,19 +86,11 @@ class InfoPage extends Component {
 
         <Divider />
         <Paragraph disabled>
-          Application running on the {process.env.NODE_ENV} environement.<br/>
-          Backend in use is {process.env.REACT_APP_API_URL}.
+          App running on {process.env.NODE_ENV} env.<br/>
+          Backend in use: {process.env.REACT_APP_API_URL}.<br/>
+          ©2020 Rewær All Rights Reserved
         </Paragraph>
-
-        {/*
-        <Text type="secondary">
-          Rewær
-          <Divider type="vertical" />
-          Berlin
-          <Divider type="vertical" />
-          ©2020 All Rights Reserved
-        </Text>
-        */}
+        
       </div>
     );
   }

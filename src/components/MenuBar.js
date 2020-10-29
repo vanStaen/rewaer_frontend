@@ -36,8 +36,8 @@ class MenuBar extends Component {
         style={{ color: "#6C917D", margin: "5px 0px" }}
       >
         {this.context.token ? (
-          <Menu.Item key="profile">
-            <Badge count={0} offset={[0, 5]}>
+          <Menu.Item key="profile" style={{ float: "right" }}>
+            <Badge count={9} offset={[0, 5]}>
               <Avatar
                 src="https://avatars0.githubusercontent.com/u/12551446?s=460"
                 size="large"
@@ -45,7 +45,11 @@ class MenuBar extends Component {
             </Badge>
           </Menu.Item>
         ) : (
-          <Menu.Item key="auth" icon={<UserOutlined />}>
+          <Menu.Item
+            key="auth"
+            icon={<UserOutlined />}
+            style={{ float: "right" }}
+          >
             <NavLink to="/auth"> Login</NavLink>
           </Menu.Item>
         )}

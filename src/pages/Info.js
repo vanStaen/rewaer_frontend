@@ -10,8 +10,8 @@ class InfoPage extends Component {
         <Title level={2}>Rewær, the green Fashion App</Title>
         <Paragraph>
           <Text type="secondary">
-            The Fashion App for minimalistic and sustainable geniuses! Renew
-            your style without buying: only trees should get new leaves every
+            The Fashion App for minimalistic and sustainable geniuses! <br/> Renew
+            your garderobe without buying: only trees should get new leaves every
             years.
           </Text>
         </Paragraph>
@@ -21,7 +21,7 @@ class InfoPage extends Component {
             tooltips: ["Copy email", "Email copied!"],
           }}
         >
-          Please address any questions/comments to admin@rewear.com.
+          Please address any questions/comments to <b>admin@rewear.com.</b>
         </Paragraph>
 
         <Divider orientation="left" plain>
@@ -32,7 +32,7 @@ class InfoPage extends Component {
           <span style={{ background: "#C8D6CF" }}>
             the most sustainable piece of clothing is the one you already have
           </span>
-          . Offered as a multiplatform application: - Web, iOS and Android. It
+          . Offered as a multiplatform application: Web, iOS and Android. It
           aim to help at organising your garderobe, keep track of your favorite
           style and helps you discover new combination to wear the clothes you
           already have. It has two main components: fashion organisator and
@@ -46,51 +46,46 @@ class InfoPage extends Component {
           Why do you need it?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
-          Renew your style without buying: only trees should get new leaves
-          every years. Renew your style without buying: only trees should get
-          new leaves every years. Renew your style without buying: only trees
-          should get new leaves every years.
-          <Text strong>
-            Renew your style without buying: only trees should get new leaves
-            every years.
-          </Text>{" "}
-          Renew your style without buying: only trees should get new leaves
-          every years. Renew your style without buying: only trees should get
-          new leaves every years. Renew your style without buying: only trees
-          should get new leaves every years. Renew your style without buying:
-          only trees should get new leaves every years. Renew your style without
-          buying: only trees should get new leaves every years. Renew your style
-          without buying: only trees should get new leaves every years. Renew
-          your style without buying: only trees should get new leaves every
-          years.
+        Fashion accounts for around 10% of greenhouse gas emissions from human activity,
+        but <span style={{ background: "#C8D6CF" }}>
+        there are ways to reduce the impact your wardrobe has on the climate</span>. Not buying 
+        new clothes you don't need is one of those solution. Or buying quality things that will last. 
+        Or simply getting items you can combine with the stuff you already have, and avoid having unworn
+        brandnew stuff laying around forever in your drawer. But also, {" "}
+        <span style={{ background: "#C8D6CF" }}>
+          Rewær is your own stylist
+        </span>: by keepingtrack of your favorite styles and items, it will help you get dress, 
+        wear stuff you like but never think
+        of wearing, and get your friends to help! Wihtout buying anything new, you will rediscover your own
+        clothes, and have the feeling of a brand new garderobe, without spending a cent!{" "}
         </Paragraph>
 
         <Divider orientation="left" plain>
           How far are we?
         </Divider>
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
-          Renew your style without buying: only trees should get new leaves
-          every years. Renew your style without buying: only trees should get
-          new leaves every years. Renew your style without buying: only trees
-          should get new leaves every years. Renew your style without buying:
-          only trees should get new leaves every years. Renew your style without
-          buying: only trees should get new leaves every years. Renew your style
-          without buying: only trees should get new leaves every years. Renew
-          your style without buying: only trees should get new leaves every
-          years. Renew your style without buying: only trees should get new
-          leaves every years. Renew your style without buying: only trees should
-          get new leaves every years. Renew your style without buying: only
-          trees should get new leaves every years. Renew your style without
-          buying: only trees should get new leaves every years.
+          We are still working on the first version, with the minimum viables feature. 
+          The first prototype will be open of any willing beta tester!{" "}
+        <span style={{ background: "#C8D6CF" }}>You can already create an account
+        </span>,
+          and we will ping out when it's ready for testing! The first feature includes
+          the main garderobe functions: mangement of <em>Items</em> and <em>Looks</em>.
         </Paragraph>
 
+        {/*
         <Divider orientation="left" plain>
-          Debuging
+          Sustainable fashion
         </Divider>
-
         <Paragraph>
-          You are running this application in {process.env.NODE_ENV} mode,
-          linked with {process.env.REACT_APP_API_URL}.
+          https://www.sustainablefashionmatterz.com/what-is-sustainable-fashion
+        </Paragraph>   
+        */}     
+        
+
+        <Divider />
+        <Paragraph disabled>
+          Application running on the {process.env.NODE_ENV} environement.<br/>
+          Backend in use is {process.env.REACT_APP_API_URL}.
         </Paragraph>
 
         {/*

@@ -49,15 +49,15 @@ class InfoPage extends Component {
         <Paragraph ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
         Fashion accounts for around 10% of greenhouse gas emissions from human activity,
         but <span style={{ background: "#C8D6CF" }}>
-        there are ways to reduce the impact your wardrobe has on the climate</span>. Not buying 
-        new clothes you don't need is one of those solution. Or buying quality things that will last. 
+        there are ways to reduce the impact your wardrobe has on the climate: not buying 
+        new clothes you don't need</span> is one of those solution. Or buying quality things that will last. 
         Or simply getting items you can combine with the stuff you already have, and avoid having unworn
         brandnew stuff laying around forever in your drawer. But also, {" "}
         <span style={{ background: "#C8D6CF" }}>
           Rewær is your own stylist
-        </span>: by keepingtrack of your favorite styles and items, it will help you get dress, 
-        wear stuff you like but never think
-        of wearing, and get your friends to help! Wihtout buying anything new, you will rediscover your own
+        </span>: by keeping track of your favorite styles and items, it will help you get dress, 
+        to style items you like and own but never think of wearing - or know how to wear;
+        and get your friends to help you with it! Without buying anything new, you will rediscover your own
         clothes, and have the feeling of a brand new garderobe, without spending a cent!{" "}
         </Paragraph>
 
@@ -73,6 +73,15 @@ class InfoPage extends Component {
           the main garderobe functions: mangement of <em>Items</em> and <em>Looks</em>, and basic
           social fonctionalities.
         </Paragraph>
+
+        {/*
+        <Divider orientation="left" plain>
+          How does it work?
+        </Divider>
+        <Paragraph>
+          https://www.sustainablefashionmatterz.com/what-is-sustainable-fashion
+        </Paragraph>   
+        */}     
 
         {/*
         <Divider orientation="left" plain>

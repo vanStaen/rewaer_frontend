@@ -7,6 +7,7 @@ import ItemsPage from "./pages/Items";
 import MailPage from "./pages/Mail";
 import FriendsPage from "./pages/Friends";
 import InfoPage from "./pages/Info";
+import ProfilPage from "./pages/Profil";
 import MenuBar from "./components/MenuBar";
 import AuthContext from "./context/auth-context";
 
@@ -46,6 +47,24 @@ class App extends Component {
                   {!this.state.token && (
                     <Route path="/auth" component={AuthPage} />
                   )}
+                  {!this.state.token && (
+                    <Redirect from="/looks" to="/auth" exact />
+                  )}
+                  {!this.state.token && (
+                    <Redirect from="/items" to="/auth" exact />
+                  )}
+                  {!this.state.token && (
+                    <Redirect from="/mail" to="/auth" exact />
+                  )}
+                  {!this.state.token && (
+                    <Redirect from="/friends" to="/auth" exact />
+                  )}
+                  {!this.state.token && (
+                    <Redirect from="/profile" to="/auth" exact />
+                  )}
+                  {this.state.token && (
+                    <Redirect from="/" to="/profile" exact />
+                  )}
                   {this.state.token && (
                     <Route path="/looks" component={LooksPage} />
                   )}
@@ -57,6 +76,9 @@ class App extends Component {
                   )}
                   {this.state.token && (
                     <Route path="/friends" component={FriendsPage} />
+                  )}
+                  {this.state.token && (
+                    <Route path="/profile" component={ProfilPage} />
                   )}
                   <Route path="/info" component={InfoPage} />
                 </Switch>

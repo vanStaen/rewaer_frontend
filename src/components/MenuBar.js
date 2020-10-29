@@ -47,12 +47,14 @@ class MenuBar extends Component {
         </span>
         {this.context.token ? (
           <Menu.Item key="profile" style={{ float: "right" }}>
-            <Badge count={5} offset={[0, 5]}>
-              <Avatar
-                src="https://avatars0.githubusercontent.com/u/12551446?s=460"
-                size="large"
-              />
-            </Badge>
+            <NavLink to="/profile">
+              <Badge count={5} offset={[0, 5]}>
+                <Avatar
+                  src="https://avatars0.githubusercontent.com/u/12551446?s=460"
+                  size="large"
+                />
+              </Badge>
+            </NavLink>
           </Menu.Item>
         ) : (
           <Menu.Item

@@ -90,6 +90,7 @@ class InfoPage extends Component {
           Backend in use: {process.env.REACT_APP_API_URL}.<br/>
           ©2020 Rewær All Rights Reserved
         </Paragraph>
+        
       </div>
     );
   }

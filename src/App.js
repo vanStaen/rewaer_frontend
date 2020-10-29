@@ -3,7 +3,10 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 
 import AuthPage from "./pages/Auth";
 import LooksPage from "./pages/Looks";
-import ItemsPages from "./pages/Items";
+import ItemsPage from "./pages/Items";
+import MailPage from "./pages/Mail";
+import FriendsPage from "./pages/Friends";
+import InfoPage from "./pages/Info";
 import MenuBar from "./components/MenuBar";
 import AuthContext from "./context/auth-context";
 
@@ -39,10 +42,23 @@ class App extends Component {
               <MenuBar />
               <main className="main-content">
                 <Switch>
-                  <Redirect from="/" to="/auth" exact />
-                  <Route path="/auth" component={AuthPage} />
-                  <Route path="/looks" component={LooksPage} />
-                  <Route path="/items" component={ItemsPages} />
+                  {!this.state.token && <Redirect from="/" to="/auth" exact />}
+                  {!this.state.token && (
+                    <Route path="/auth" component={AuthPage} />
+                  )}
+                  {this.state.token && (
+                    <Route path="/looks" component={LooksPage} />
+                  )}
+                  {this.state.token && (
+                    <Route path="/items" component={ItemsPage} />
+                  )}
+                  {this.state.token && (
+                    <Route path="/mail" component={MailPage} />
+                  )}
+                  {this.state.token && (
+                    <Route path="/friends" component={FriendsPage} />
+                  )}
+                  <Route path="/info" component={InfoPage} />
                 </Switch>
               </main>
             </AuthContext.Provider>

@@ -8,6 +8,7 @@ import {
   SkinOutlined,
   TeamOutlined,
   MailOutlined,
+  QuestionOutlined,
 } from "@ant-design/icons";
 
 class MenuBar extends Component {
@@ -33,8 +34,17 @@ class MenuBar extends Component {
         onClick={this.handleClick}
         selectedKeys={[current]}
         mode="horizontal"
-        style={{ color: "#6C917D", margin: "5px 0px" }}
+        style={{ margin: "5px 0px" }}
       >
+        <span
+          style={{
+            color: "#6C917D",
+            float: "left",
+            margin: "0px 20px 0px 20px",
+          }}
+        >
+          Rewær, the green Fashion App
+        </span>
         {this.context.token ? (
           <Menu.Item key="profile" style={{ float: "right" }}>
             <Badge count={5} offset={[0, 5]}>
@@ -84,6 +94,12 @@ class MenuBar extends Component {
           style={{ float: "left" }}
         >
           <NavLink to="/friends"> Friends</NavLink>
+        </Menu.Item>
+        <Menu.Item key="info" style={{ float: "left" }}>
+          <NavLink to="/info">
+            &nbsp;&nbsp;
+            <QuestionOutlined />
+          </NavLink>
         </Menu.Item>
       </Menu>
     );

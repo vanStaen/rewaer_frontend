@@ -27,6 +27,35 @@ class App extends Component {
     this.setState({ token: null, userId: null });
   };
 
+  componentDidMount() {
+      // call the the dummy endpoint to wake the backend. 
+      let requestBody = {
+        query: `
+            query {
+              dummy {
+                dummy
+                }
+              }
+            `,
+      };
+      fetch(process.env.REACT_APP_API_URL, {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((resData) => {
+          console.log('Backend awake? '+resData.data.dummy.dummy);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
+
   render() {
     return (
       <div>

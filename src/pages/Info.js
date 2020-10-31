@@ -85,15 +85,6 @@ class InfoPage extends Component {
 
         {/*
         <Divider orientation="left" plain>
-          How does it work?
-        </Divider>
-        <Paragraph>
-          https://www.sustainablefashionmatterz.com/what-is-sustainable-fashion
-        </Paragraph>   
-        */}
-
-        {/*
-        <Divider orientation="left" plain>
           Sustainable fashion
         </Divider>
         <Paragraph>

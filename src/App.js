@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { notification } from 'antd';
+
 
 import AuthPage from "./pages/Auth";
 import LooksPage from "./pages/Looks";
@@ -12,6 +14,16 @@ import MenuBar from "./components/MenuBar";
 import AuthContext from "./context/auth-context";
 
 import "./App.css";
+
+const openNotification = () => {
+  notification.open({
+    message: 'Connection Error.',
+    description: "The connection could not be established with the backend server: " + process.env.REACT_APP_API_URL + "",
+    duration: 5,
+    type: 'error',
+    placement: 'bottomRight '
+  });
+};
 
 class App extends Component {
   state = {
@@ -52,6 +64,8 @@ class App extends Component {
           console.log('Backend awake? '+resData.data.dummy.dummy);
         })
         .catch((err) => {
+          console.log('Error connecting to the back end');
+          openNotification();
           console.log(err);
         });
   }

@@ -10,6 +10,7 @@ Rewaer Front End
   - [ ] Send Email to new user user
 - [ ] Restore Pwd feature
 - [ ] Persist token in local Session
+- [ ] Dummy graphql querry by front-end loading, to wake up the backend.
 
 ## Completed ✓
 

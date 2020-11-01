@@ -18,7 +18,7 @@ import "./App.css";
 const openNotification = () => {
   notification.open({
     message: 'Connection to server failed!',
-    description: "The connection could not be established with the backend server: Please wait a couple of seconds and refresh the page.",
+    description: "The connection could not be established with the backend server.",
     duration: 0,
     type: 'error',
     placement: 'bottomRight'

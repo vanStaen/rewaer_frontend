@@ -7,11 +7,12 @@ Rewaer Front End
 - [ ] Handle Log/signin Errors from backend (and display those)
 - [ ] Handle new account created
   - [ ] Show success message in App
-  - [ ] Send Email to new user user
+  - [ ] Send Email to new user
 - [ ] Restore Pwd feature
 - [ ] Persist token in local Session
-- [ ] Dummy graphql querry by front-end loading, to wake up the backend.
 
 ## Completed ✓
 
 - [x] Login feature
+- [x] Dummy graphql query to wake up heroku backend
+- [x] Handle error on connection failure with backend

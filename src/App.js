@@ -17,11 +17,11 @@ import "./App.css";
 
 const openNotification = () => {
   notification.open({
-    message: 'Connection Error.',
-    description: "The connection could not be established with the backend server: " + process.env.REACT_APP_API_URL + "",
-    duration: 5,
+    message: 'Connection to server failed!',
+    description: "The connection could not be established with the backend server: Please wait a couple of seconds and refresh the page.",
+    duration: 0,
     type: 'error',
-    placement: 'bottomRight '
+    placement: 'bottomRight'
   });
 };
 

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
-import { notification } from 'antd';
-
+import { notification } from "antd";
 
 import AuthPage from "./pages/Auth";
 import LooksPage from "./pages/Looks";
@@ -17,18 +16,22 @@ import "./App.css";
 
 const openNotification = () => {
   notification.open({
-    message: 'Connection to server failed!',
-    description: "The connection could not be established with the backend server.",
+    message: "Connection to server failed!",
+    description:
+      "The connection could not be established with the backend server.",
     duration: 0,
-    type: 'error',
-    placement: 'bottomRight'
+    type: "error",
+    placement: "bottomRight",
   });
 };
 
+const token = localStorage.getItem("token");
+const userId = localStorage.getItem("userId");
+
 class App extends Component {
   state = {
-    token: null,
-    userId: null,
+    token: token || null,
+    userId: userId || null,
   };
 
   login = (token, userId, tokenExpiration) => {
@@ -37,37 +40,40 @@ class App extends Component {
 
   logout = () => {
     this.setState({ token: null, userId: null });
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.clear();
   };
 
   componentDidMount() {
-      // call the the dummy endpoint to wake the backend. 
-      let requestBody = {
-        query: `
+    // call the the dummy endpoint to wake the backend.
+    let requestBody = {
+      query: `
             query {
               dummy {
                 dummy
                 }
               }
             `,
-      };
-      fetch(process.env.REACT_APP_API_URL, {
-        method: "POST",
-        body: JSON.stringify(requestBody),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    };
+    fetch(process.env.REACT_APP_API_URL, {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
       })
-        .then((res) => {
-          return res.json();
-        })
-        .then((resData) => {
-          console.log('Backend awake? '+resData.data.dummy.dummy);
-        })
-        .catch((err) => {
-          console.log('Error connecting to the back end');
-          openNotification();
-          console.log(err);
-        });
+      .then((resData) => {
+        console.log("Backend awake? " + resData.data.dummy.dummy);
+      })
+      .catch((err) => {
+        console.log("Error connecting to the back end");
+        openNotification();
+        console.log(err);
+      });
   }
 
   render() {

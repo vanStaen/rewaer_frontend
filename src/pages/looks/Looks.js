@@ -11,11 +11,12 @@ class LooksPage extends Component {
           <Col>
             <Card
               hoverable
-              style={{ width: 240 }}
+              bordered
+              style={{ width: 240, marginBottom: 30 }}
               cover={
                 <img
                   alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  src="https://rewaer-backend.herokuapp.com/uploads/43.jpg"
                 />
               }
             >
@@ -25,11 +26,11 @@ class LooksPage extends Component {
           <Col>
             <Card
               hoverable
-              style={{ width: 240 }}
+              style={{ width: 240, marginBottom: 30 }}
               cover={
                 <img
                   alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  src="https://rewaer-backend.herokuapp.com/uploads/46.jpg"
                 />
               }
             >
@@ -39,11 +40,11 @@ class LooksPage extends Component {
           <Col>
             <Card
               hoverable
-              style={{ width: 240 }}
+              style={{ width: 240, marginBottom: 30 }}
               cover={
                 <img
                   alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  src="https://rewaer-backend.herokuapp.com/uploads/49.jpg"
                 />
               }
             >
@@ -53,11 +54,123 @@ class LooksPage extends Component {
           <Col>
             <Card
               hoverable
-              style={{ width: 240 }}
+              style={{ width: 240, marginBottom: 30 }}
               cover={
                 <img
                   alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                  src="https://rewaer-backend.herokuapp.com/uploads/64.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/88.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/99.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/100.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/104.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/106.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/112.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/136.jpg"
+                />
+              }
+            >
+              <Meta title="Casual smart 2020" />
+            </Card>
+          </Col>
+          <Col>
+            <Card
+              hoverable
+              style={{ width: 240, marginBottom: 30 }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://rewaer-backend.herokuapp.com/uploads/126.jpg"
                 />
               }
             >

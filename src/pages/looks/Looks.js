@@ -1,5 +1,7 @@
-import { Card, Col, Row } from "antd";
+import { Image, Card, Col, Row } from "antd";
 import React, { Component } from "react";
+
+import "./Looks.css";
 
 const { Meta } = Card;
 
@@ -14,13 +16,19 @@ class LooksPage extends Component {
               bordered
               style={{ width: 240, marginBottom: 30 }}
               cover={
-                <img
+                <Image
                   alt="example"
                   src="https://rewaer-backend.herokuapp.com/uploads/43.jpg"
+                  placeholder={
+                    <Image
+                      src="https://rewaer-backend.herokuapp.com/uploads/43_thumb.jpg"
+                      width={240}
+                    />
+                  }
                 />
               }
             >
-              <Meta title="Casual smart 2020" />
+              <Meta title="Cold days 2019" />
             </Card>
           </Col>
           <Col>
@@ -28,9 +36,15 @@ class LooksPage extends Component {
               hoverable
               style={{ width: 240, marginBottom: 30 }}
               cover={
-                <img
+                <Image
                   alt="example"
                   src="https://rewaer-backend.herokuapp.com/uploads/46.jpg"
+                  placeholder={
+                    <Image
+                      src="https://rewaer-backend.herokuapp.com/uploads/46_thumb.jpg"
+                      width={240}
+                    />
+                  }
                 />
               }
             >

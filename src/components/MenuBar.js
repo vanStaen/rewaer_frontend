@@ -9,7 +9,10 @@ import {
   TeamOutlined,
   MailOutlined,
   QuestionOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
+
+const { SubMenu } = Menu;
 
 class MenuBar extends Component {
   constructor(props) {
@@ -46,16 +49,29 @@ class MenuBar extends Component {
           Rewær, the green Fashion App
         </span>
         {this.context.token ? (
-          <Menu.Item key="profile" style={{ float: "right" }}>
-            <NavLink to="/profile">
-              <Badge count={5} offset={[0, 5]}>
-                <Avatar
-                  src="https://avatars0.githubusercontent.com/u/12551446?s=460"
-                  size="large"
-                />
-              </Badge>
-            </NavLink>
-          </Menu.Item>
+          <SubMenu
+            key="profile"
+            title={
+              <NavLink to="/profile">
+                <Badge count={5} offset={[0, 5]}>
+                  <Avatar
+                    src="https://avatars0.githubusercontent.com/u/12551446?s=460"
+                    size="large"
+                  />
+                </Badge>
+              </NavLink>
+            }
+            style={{ float: "right" }}
+          >
+            <Menu.Item key="setting:2" icon={<LogoutOutlined />}>
+              logout
+            </Menu.Item>
+            {/*
+                  <Menu.ItemGroup title="Item 2">
+                    <Menu.Item key="setting:3">Option 3</Menu.Item>
+                    <Menu.Item key="setting:4">Option 4</Menu.Item>
+                  </Menu.ItemGroup> */}
+          </SubMenu>
         ) : (
           <Menu.Item
             key="auth"
@@ -65,6 +81,7 @@ class MenuBar extends Component {
             <NavLink to="/auth"> Login</NavLink>
           </Menu.Item>
         )}
+
         <Menu.Item
           key="looks"
           icon={<CameraOutlined />}

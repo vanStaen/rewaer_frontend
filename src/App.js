@@ -46,6 +46,12 @@ class App extends Component {
   };
 
   componentDidMount() {
+    //show the token if existing
+    if (this.state.token && process.env.NODE_ENV == "development") {
+      console.log(this.state.token);
+      console.log("State ", this.state);
+    }
+
     // call the the dummy endpoint to wake the backend.
     let requestBody = {
       query: `
@@ -67,7 +73,7 @@ class App extends Component {
         return res.json();
       })
       .then((resData) => {
-        console.log("Backend awake? " + resData.data.dummy.dummy);
+        console.log("Backend is awake :  " + resData.data.dummy.dummy);
       })
       .catch((err) => {
         console.log("Error connecting to the back end");

@@ -1,14 +1,59 @@
 import { Image, Card, Col, Row } from "antd";
 import React, { Component } from "react";
+import AuthContext from "../../context/auth-context";
 
 import "./Looks.css";
 
 const { Meta } = Card;
 
 class LooksPage extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static contextType = AuthContext;
+
   render() {
+    const loadLooks = (userId) => {
+      const requestBody = {
+        query: `
+              query {
+                  looks {
+                    _id
+                    title
+                    active
+                    favorite
+                    dateCreated
+                  }
+                }
+                `,
+      };
+
+      fetch(process.env.REACT_APP_API_URL, {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.context.token,
+        },
+      })
+        .then((res) => {
+          if ((res.status !== 200) & (res.status !== 201)) {
+            throw new Error("Unauthenticated!");
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          console.log(resData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
     return (
       <div>
+        {loadLooks()}
         <Row justify={"space-around"}>
           <Col>
             <Card

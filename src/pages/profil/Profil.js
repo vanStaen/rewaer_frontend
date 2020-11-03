@@ -2,9 +2,8 @@ import React, { Component } from "react";
 
 class ProfilPage extends Component {
   render() {
-    const token = localStorage.getItem("token");
+    //const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    console.log(token);
     return (
       <div>
         <h1>Profil</h1>

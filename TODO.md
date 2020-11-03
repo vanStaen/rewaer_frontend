@@ -9,6 +9,7 @@ Rewaer Front End
   - with passport? https://www.youtube.com/watch?v=6FOq4cUdH8k
   - with axios? https://medium.com/@ryanchenkie_40935/react-authentication-how-to-store-jwt-in-a-cookie-346519310e81
   - without ? https://www.youtube.com/watch?v=4_ZiJGY5F38
+  - more: https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/#jwt_persist
 - [ ] Handle Log/signin Errors from backend (and display those)
 - [ ] Handle new account created
   - [ ] Show success message in App

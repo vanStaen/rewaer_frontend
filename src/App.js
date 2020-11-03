@@ -3,12 +3,12 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { notification } from "antd";
 
 import AuthPage from "./pages/Auth";
-import LooksPage from "./pages/Looks";
-import ItemsPage from "./pages/Items";
-import MailPage from "./pages/Mail";
-import FriendsPage from "./pages/Friends";
-import InfoPage from "./pages/Info";
-import ProfilPage from "./pages/Profil";
+import LooksPage from "./pages/looks/Looks";
+import ItemsPage from "./pages/items/Items";
+import MailPage from "./pages/mail/Mail";
+import FriendsPage from "./pages/friends/Friends";
+import InfoPage from "./pages/info/Info";
+import ProfilPage from "./pages/profil/Profil";
 import MenuBar from "./components/MenuBar";
 import AuthContext from "./context/auth-context";
 

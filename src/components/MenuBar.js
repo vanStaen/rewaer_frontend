@@ -62,6 +62,7 @@ class MenuBar extends Component {
               </NavLink>
             }
             style={{ float: "right" }}
+            onClick={this.context.logout}
           >
             <Menu.Item key="setting:2" icon={<LogoutOutlined />}>
               logout

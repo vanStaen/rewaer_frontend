@@ -79,6 +79,8 @@ class LoginForm extends Component {
               resData.data.login.userId,
               resData.data.login.tokenExpiration
             );
+            localStorage.setItem("token", resData.data.login.token);
+            localStorage.setItem("userId", resData.data.login.userId);
             console.log(resData);
           }
         })
@@ -162,7 +164,10 @@ class LoginForm extends Component {
             {this.state.isLogin ? "Log in" : "Create account"}
           </Button>
           Or{" "}
-          <span style={{ color: "#6C917D", cursor:"pointer" }} onClick={this.switchModeHandler}>
+          <span
+            style={{ color: "#6C917D", cursor: "pointer" }}
+            onClick={this.switchModeHandler}
+          >
             {this.state.isLogin ? "register now!" : "log into your account!"}
           </span>
         </Form.Item>

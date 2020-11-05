@@ -4,6 +4,10 @@ Rewaer Front End
 
 ## To-dos:
 
+- [ ] First refactoring round:
+  - [ ] in as many stateless component as possible
+  - [ ] check state usage in already created component
+  - [ ] Check class vs function component
 - [ ] Implement refresh Token
   - with apollo? https://www.youtube.com/watch?v=3qLJPLN33DE&t=68s
   - with passport? https://www.youtube.com/watch?v=6FOq4cUdH8k

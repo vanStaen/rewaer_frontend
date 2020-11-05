@@ -18,7 +18,7 @@ class MenuBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: null,
+      menuSelected: null,
     };
   }
 
@@ -26,16 +26,16 @@ class MenuBar extends Component {
 
   handleClick = (e) => {
     console.log("click ", e);
-    this.setState({ current: e.key });
+    this.setState({ menuSelected: e.key });
   };
 
   render() {
     console.log();
-    const { current } = this.state;
+    const { menuSelected } = this.state;
     return (
       <Menu
         onClick={this.handleClick}
-        selectedKeys={[current]}
+        selectedKeys={[menuSelected]}
         mode="horizontal"
         style={{ margin: "5px 0px" }}
       >

@@ -66,7 +66,7 @@ class LoginForm extends Component {
           });
       } else {
         // Login
-        fetch(process.env.REACT_APP_AUTH_URL, {
+        fetch(process.env.REACT_APP_AUTH_URL + "/login", {
           method: "POST",
           body: JSON.stringify(requestBody),
           headers: {

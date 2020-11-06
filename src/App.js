@@ -14,9 +14,9 @@ import AuthContext from "./context/auth-context";
 
 import "./App.css";
 
-const openNotification = () => {
+const openNotification = (msg) => {
   notification.open({
-    message: "Connection to server failed!",
+    message: msg,
     description:
       "The connection could not be established with the backend server.",
     duration: 0,
@@ -35,15 +35,34 @@ class App extends Component {
     userId: userId || null,
   };
 
-  login = (token, userId, tokenExpiration) => {
+  login = (token, refreshToken, userId) => {
     this.setState({ token: token, refreshToken: refreshToken, userId: userId });
+    console.log("auth-context ", this.state);
   };
 
   logout = () => {
-    this.setState({ token: null, refreshToken: null, userId: null });
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("userId");
     localStorage.clear();
+    this.setState({ token: null, refreshToken: null, userId: null });
+
+    // Delete refreshtoken from db, from localstorage, from context
+    fetch(process.env.REACT_APP_AUTH_URL + "/logout", {
+      method: "DELETE",
+      body: JSON.stringify({ refreshToken: refreshToken }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.status !== 204) {
+          throw new Error("Error when logout!");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   componentDidMount() {
@@ -77,7 +96,7 @@ class App extends Component {
       })
       .catch((err) => {
         console.log("Error connecting to the back end");
-        openNotification();
+        openNotification("Connection to server failed!");
         console.log(err);
       });
   }

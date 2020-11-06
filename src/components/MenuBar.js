@@ -48,7 +48,7 @@ class MenuBar extends Component {
         >
           Rewær, the green Fashion App
         </span>
-        {this.context.token ? (
+        {this.context.refreshToken ? (
           <SubMenu
             key="profile"
             title={
@@ -86,7 +86,7 @@ class MenuBar extends Component {
         <Menu.Item
           key="looks"
           icon={<CameraOutlined />}
-          disabled={!this.context.token}
+          disabled={!this.context.refreshToken}
           style={{ float: "left" }}
         >
           <NavLink to="/looks"> Looks</NavLink>
@@ -94,7 +94,7 @@ class MenuBar extends Component {
         <Menu.Item
           key="items"
           icon={<SkinOutlined />}
-          disabled={!this.context.token}
+          disabled={!this.context.refreshToken}
           style={{ float: "left" }}
         >
           <NavLink to="/items"> Items</NavLink>

@@ -4,6 +4,6 @@ export default React.createContext({
   token: null,
   userId: null,
   refreshtoken: null,
-  login: (token, userId) => {},
+  login: (token, refreshToken, userId) => {},
   logout: () => {},
 });

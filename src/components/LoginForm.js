@@ -81,8 +81,12 @@ class LoginForm extends Component {
           })
           .then((resData) => {
             if (resData.token) {
-              this.context.login(resData.token, resData.userId);
-              localStorage.setItem("token", resData.token);
+              this.context.login(
+                resData.token,
+                resData.refreshToken,
+                resData.userId
+              );
+              localStorage.setItem("refreshToken", resData.refreshToken);
               localStorage.setItem("userId", resData.userId);
               //console.log(resData);
             }

@@ -25,31 +25,31 @@ const openNotification = () => {
   });
 };
 
-const token = localStorage.getItem("token");
+const refreshToken = localStorage.getItem("refreshToken");
 const userId = localStorage.getItem("userId");
 
 class App extends Component {
   state = {
-    token: token || null,
+    token: null,
+    refreshToken: refreshToken || null,
     userId: userId || null,
   };
 
   login = (token, userId, tokenExpiration) => {
-    this.setState({ token: token, userId: userId });
+    this.setState({ token: token, refreshToken: refreshToken, userId: userId });
   };
 
   logout = () => {
-    this.setState({ token: null, userId: null });
-    localStorage.removeItem("token");
+    this.setState({ token: null, refreshToken: null, userId: null });
+    localStorage.removeItem("refreshToken");
     localStorage.removeItem("userId");
     localStorage.clear();
   };
 
   componentDidMount() {
     //show the token if existing
-    if (this.state.token && process.env.NODE_ENV === "development") {
-      console.log(this.state.token);
-      console.log("State ", this.state);
+    if (this.state.refreshToken && process.env.NODE_ENV === "development") {
+      console.log("auth-context ", this.state);
     }
 
     // call the the dummy endpoint to wake the backend.
@@ -90,6 +90,7 @@ class App extends Component {
             <AuthContext.Provider
               value={{
                 token: this.state.token,
+                refreshToken: this.state.refreshToken,
                 userId: this.state.userId,
                 login: this.login,
                 logout: this.logout,
@@ -98,44 +99,46 @@ class App extends Component {
               <MenuBar />
               <main className="main-content">
                 <Switch>
-                  {!this.state.token && <Redirect from="/" to="/auth" exact />}
-                  {!this.state.token && (
+                  {!this.state.refreshToken && (
+                    <Redirect from="/" to="/auth" exact />
+                  )}
+                  {!this.state.refreshToken && (
                     <Route path="/auth" component={AuthPage} />
                   )}
-                  {!this.state.token && (
+                  {!this.state.refreshToken && (
                     <Redirect from="/looks" to="/auth" exact />
                   )}
-                  {!this.state.token && (
+                  {!this.state.refreshToken && (
                     <Redirect from="/items" to="/auth" exact />
                   )}
-                  {!this.state.token && (
+                  {!this.state.refreshToken && (
                     <Redirect from="/mail" to="/auth" exact />
                   )}
-                  {!this.state.token && (
+                  {!this.state.refreshToken && (
                     <Redirect from="/friends" to="/auth" exact />
                   )}
-                  {!this.state.token && (
+                  {!this.state.refreshToken && (
                     <Redirect from="/profile" to="/auth" exact />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Redirect from="/" to="/profile" exact />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Redirect from="/auth" to="/profile" exact />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Route path="/looks" component={LooksPage} />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Route path="/items" component={ItemsPage} />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Route path="/mail" component={MailPage} />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Route path="/friends" component={FriendsPage} />
                   )}
-                  {this.state.token && (
+                  {this.state.refreshToken && (
                     <Route path="/profile" component={ProfilPage} />
                   )}
                   <Route path="/info" component={InfoPage} />

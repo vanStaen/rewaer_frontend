@@ -9,9 +9,10 @@ Rewaer Front End
   - [ ] check state usage in already created component
   - [ ] Check class vs function component
 - [ ] Implement refresh Token
-  - Stop persisting token in local var
-  - Start persisting refreshtoken in local var
-  - Handle when token not valid anymore
+  - [x] Stop persisting token in local var
+  - [x] Start persisting refreshtoken in local var
+  - [ ] Kill refresh token on logout
+  - [ ] Handle when token not valid anymore
 - [ ] Handle Log/signin Errors from backend (and display those)
 - [ ] Handle new account created
   - [ ] Show success message in App

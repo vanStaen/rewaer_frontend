@@ -32,18 +32,9 @@ class LoginForm extends Component {
       const email = values.email;
       const password = values.password;
 
-      let requestBody = {
-        query: `
-            query {
-              login(email:"${email}",password:"${password}"){
-                userId
-                token
-                tokenExpiration
-              }
-            }
-            `,
-      };
+      let requestBody = { email: email, password: password };
 
+      // Register
       if (!this.state.isLogin) {
         const username = values.username;
         requestBody = {
@@ -57,36 +48,49 @@ class LoginForm extends Component {
                 }
                 `,
         };
+        fetch(process.env.REACT_APP_API_URL, {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => {
+            if ((res.status !== 200) & (res.status !== 201)) {
+              throw new Error("Error when registering!");
+            }
+            return res.json();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        // Login
+        fetch(process.env.REACT_APP_AUTH_URL, {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => {
+            if ((res.status !== 200) & (res.status !== 201)) {
+              throw new Error("Error when login!");
+            }
+            return res.json();
+          })
+          .then((resData) => {
+            if (resData.token) {
+              this.context.login(resData.token, resData.userId);
+              localStorage.setItem("token", resData.token);
+              localStorage.setItem("userId", resData.userId);
+              //console.log(resData);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
-
-      fetch(process.env.REACT_APP_API_URL, {
-        method: "POST",
-        body: JSON.stringify(requestBody),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => {
-          if ((res.status !== 200) & (res.status !== 201)) {
-            throw new Error("Login Failed!");
-          }
-          return res.json();
-        })
-        .then((resData) => {
-          if (resData.data.login.token) {
-            this.context.login(
-              resData.data.login.token,
-              resData.data.login.userId,
-              resData.data.login.tokenExpiration
-            );
-            localStorage.setItem("token", resData.data.login.token);
-            localStorage.setItem("userId", resData.data.login.userId);
-            console.log(resData);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     };
 
     return (

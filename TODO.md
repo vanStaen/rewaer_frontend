@@ -26,3 +26,4 @@ Rewaer Front End
 - [x] Dummy graphql query to wake up heroku backend
 - [x] Handle error on connection failure with backend
 - [x] Persist token in localStorage
+- [x] Use new Auth server (BackEnd)

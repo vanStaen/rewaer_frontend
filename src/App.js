@@ -47,7 +47,7 @@ class App extends Component {
 
   componentDidMount() {
     //show the token if existing
-    if (this.state.token && process.env.NODE_ENV == "development") {
+    if (this.state.token && process.env.NODE_ENV === "development") {
       console.log(this.state.token);
       console.log("State ", this.state);
     }

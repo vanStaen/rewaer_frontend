@@ -7,10 +7,6 @@ import "./Looks.css";
 const { Meta } = Card;
 
 class LooksPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   static contextType = AuthContext;
 
   render() {

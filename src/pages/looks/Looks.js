@@ -1,5 +1,6 @@
 import { Image, Card, Col, Row } from "antd";
 import React, { Component } from "react";
+import LookCard from "./LookCard";
 import AuthContext from "../../context/auth-context";
 
 import "./Looks.css";
@@ -52,25 +53,7 @@ class LooksPage extends Component {
         {loadLooks()}
         <Row justify={"space-around"}>
           <Col>
-            <Card
-              hoverable
-              bordered
-              style={{ width: 240, marginBottom: 30 }}
-              cover={
-                <Image
-                  alt="example"
-                  src="https://rewaer-backend.herokuapp.com/uploads/43.jpg"
-                  placeholder={
-                    <Image
-                      src="https://rewaer-backend.herokuapp.com/uploads/43_thumb.jpg"
-                      width={240}
-                    />
-                  }
-                />
-              }
-            >
-              <Meta title="Cold days 2019" />
-            </Card>
+            <LookCard />
           </Col>
           <Col>
             <Card

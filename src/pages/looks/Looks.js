@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
 import React, { Component } from "react";
+
 import LookCard from "./LookCard";
 import AuthContext from "../../context/auth-context";
 
@@ -45,6 +46,37 @@ class LooksPage extends Component {
           console.log(err);
         });
     };
+
+    // Refresh token is token missing
+    if (this.context.token == null) {
+      let requestBody = { refreshToken: this.context.refreshToken };
+      fetch(process.env.REACT_APP_AUTH_URL + "/token", {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          if ((res.status !== 200) & (res.status !== 201)) {
+            throw new Error("Error when refreshing the token!");
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          if (resData.token) {
+            this.context.login(
+              resData.token,
+              this.context.refreshToken,
+              this.context.userId
+            );
+            console.log("auth-context ", this.state);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
     return (
       <div>

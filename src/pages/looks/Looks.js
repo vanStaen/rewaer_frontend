@@ -54,7 +54,7 @@ class LooksPage extends Component {
         complete: true,
       });
       let dateNow = new Date();
-      if (decodedToken.exp < dateNow.getTime()) {
+      if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
         console.log("TOKEN HAS EXPIRED!");
         this.context.login(
           null,

@@ -1,11 +1,9 @@
-import { Image, Card, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import React, { Component } from "react";
 import LookCard from "./LookCard";
 import AuthContext from "../../context/auth-context";
 
 import "./Looks.css";
-
-const { Meta } = Card;
 
 class LooksPage extends Component {
   static contextType = AuthContext;

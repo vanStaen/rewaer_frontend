@@ -4,6 +4,10 @@ Rewaer Front End
 
 ## To-dos:
 
+- [ ] Check validity of refresh token
+  - [ ] check if refresh token is valid
+  - [ ] if not call logout
+  - [ ] refactor in a separate module
 - [ ] First refactoring round:
   - [ ] in as many stateless component as possible
   - [ ] check state usage in already created component

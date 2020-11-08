@@ -1,5 +1,6 @@
 import { Col, Row } from "antd";
 import React, { Component } from "react";
+import jsonwebtoken from "jsonwebtoken";
 
 import LookCard from "./LookCard";
 import AuthContext from "../../context/auth-context";
@@ -47,8 +48,24 @@ class LooksPage extends Component {
         });
     };
 
+    // Check if token is expired
+    if (this.context.token) {
+      let decodedToken = jsonwebtoken.decode(this.context.token, {
+        complete: true,
+      });
+      let dateNow = new Date();
+      if (decodedToken.exp < dateNow.getTime()) {
+        console.log("TOKEN HAS EXPIRED!");
+        this.context.login(
+          null,
+          this.context.refreshToken,
+          this.context.userId
+        );
+      }
+    }
+
     // Refresh token is token missing
-    if (this.context.token == null) {
+    if (!this.context.token) {
       let requestBody = { refreshToken: this.context.refreshToken };
       fetch(process.env.REACT_APP_AUTH_URL + "/token", {
         method: "POST",

@@ -84,7 +84,7 @@ class LooksPage extends Component {
           if (resData.token) {
             this.context.login(
               resData.token,
-              this.context.refreshToken,
+              resData.refreshToken,
               this.context.userId
             );
             console.log("auth-context ", this.state);

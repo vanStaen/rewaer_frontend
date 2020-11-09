@@ -68,7 +68,7 @@ class App extends Component {
   componentDidMount() {
     //show the token if existing
     if (this.state.refreshToken && process.env.NODE_ENV === "development") {
-      console.log("auth-context ", this.state);
+      console.log("[Development] auth-context ", this.state);
     }
 
     // call the the dummy endpoint to wake the backend.

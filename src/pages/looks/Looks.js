@@ -87,7 +87,6 @@ class LooksPage extends Component {
               resData.refreshToken,
               this.context.userId
             );
-            console.log("auth-context ", this.state);
           }
         })
         .catch((err) => {

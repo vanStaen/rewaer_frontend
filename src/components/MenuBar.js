@@ -24,9 +24,8 @@ class MenuBar extends Component {
 
   static contextType = AuthContext;
 
-  handleClick = (e) => {
-    console.log("click ", e);
-    this.setState({ menuSelected: e.key });
+  handleClick = (event) => {
+    this.setState({ menuSelected: event.key });
   };
 
   render() {

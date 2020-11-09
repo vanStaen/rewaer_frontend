@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import jsonwebtoken from "jsonwebtoken";
 
 import LookCard from "./LookCard";
+import LookForm from "./LookForm";
 import AuthContext from "../../context/auth-context";
 
 import "./Looks.css";
@@ -47,6 +48,18 @@ class LooksPage extends Component {
           console.log(err);
         });
     };
+
+    // Check if refreshtoken is expired
+    if (this.context.refreshToken) {
+      let decodedRefreshToken = jsonwebtoken.decode(this.context.refreshToken, {
+        complete: true,
+      });
+      let dateNow = new Date();
+      if (decodedRefreshToken.exp < Math.floor(dateNow.getTime() / 1000)) {
+        console.log("REFRESH TOKEN HAS EXPIRED!");
+        this.context.logout();
+      }
+    }
 
     // Check if token is expired
     if (this.context.token) {
@@ -98,6 +111,9 @@ class LooksPage extends Component {
       <div>
         {loadLooks()}
         <Row justify={"space-around"}>
+          <Col>
+            <LookForm />
+          </Col>
           <Col>
             <LookCard num="43" title="43" />
           </Col>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Upload, message } from 'antd';
-import { SkinOutlined } from '@ant-design/icons';
+import { CameraOutlined } from '@ant-design/icons';
 
 import "./LookForm.css";
 
@@ -33,7 +33,7 @@ const LookForm = () => {
     <div className="this">
       <Dragger {...props}>
         <p className="ant-upload-drag-icon">
-          <SkinOutlined />
+          <CameraOutlined />
         </p>
         <p className="ant-upload-text">Create Look</p>
         <p className="ant-upload-hint">

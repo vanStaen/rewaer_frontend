@@ -37,7 +37,6 @@ class App extends Component {
 
   login = (token, refreshToken, userId) => {
     this.setState({ token: token, refreshToken: refreshToken, userId: userId });
-    console.log("auth-context ", this.state);
   };
 
   logout = () => {

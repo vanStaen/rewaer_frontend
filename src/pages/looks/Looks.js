@@ -75,7 +75,7 @@ class LooksPage extends Component {
         },
       })
         .then((res) => {
-          if ((res.status !== 200) & (res.status !== 201)) {
+          if (res.status !== 201) {
             throw new Error("Error when refreshing the token!");
           }
           return res.json();

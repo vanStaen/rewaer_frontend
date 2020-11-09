@@ -109,7 +109,7 @@ class MenuBar extends Component {
         <Menu.Item
           key="friends"
           icon={<TeamOutlined />}
-          disabled
+          
           style={{ float: "left" }}
         >
           <NavLink to="/friends"> Friends</NavLink>

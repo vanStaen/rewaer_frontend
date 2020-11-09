@@ -55,7 +55,6 @@ class App extends Component {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.status !== 204) {
           throw new Error("Error when logout!");
         }
@@ -90,9 +89,6 @@ class App extends Component {
     })
       .then((res) => {
         return res.json();
-      })
-      .then((resData) => {
-        console.log("Backend is awake :  " + resData.data.dummy.dummy);
       })
       .catch((err) => {
         console.log("Error connecting to the back end");

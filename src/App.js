@@ -41,27 +41,28 @@ class App extends Component {
   };
 
   logout = () => {
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("userId");
-    localStorage.clear();
-    this.setState({ token: null, refreshToken: null, userId: null });
-
-    // Delete refreshtoken from db, from localstorage, from context
+    // Delete refreshtoken from db
     fetch(process.env.REACT_APP_AUTH_URL + "/logout", {
       method: "DELETE",
-      body: JSON.stringify({ refreshToken: refreshToken }),
+      body: JSON.stringify({ refreshToken: this.state.refreshToken }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
         if (res.status !== 204) {
-          throw new Error("Error when logout!");
+          throw new Error("Error when logout!"); // Probably was the refresh not found in the db
         }
       })
       .catch((err) => {
         console.log(err);
       });
+      // from localstorage, 
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("userId");
+      localStorage.clear();
+      // from context
+      this.setState({ token: null, refreshToken: null, userId: null });
   };
 
   componentDidMount() {

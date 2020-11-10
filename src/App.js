@@ -14,6 +14,8 @@ import AuthContext from "./context/auth-context";
 
 import "./App.css";
 
+const refreshToken = localStorage.getItem("refreshToken");
+
 const openNotification = (msg) => {
   notification.open({
     message: msg,
@@ -25,25 +27,29 @@ const openNotification = (msg) => {
   });
 };
 
-const refreshToken = localStorage.getItem("refreshToken");
-const userId = localStorage.getItem("userId");
-
 class App extends Component {
   state = {
     token: null,
-    refreshToken: refreshToken || null,
-    userId: userId || null,
+    refreshToken: refreshToken || null,
   };
 
-  login = (token, refreshToken, userId) => {
-    this.setState({ token: token, refreshToken: refreshToken, userId: userId });
+  login = (token, refreshToken) => {
+    this.setState({ token: token, refreshToken: refreshToken });
   };
 
   logout = () => {
+    // Delete refreshtoken from localstorage, 
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userId");
+    localStorage.clear();
+    // Delete token from context
+    this.setState({ token: null, refreshToken: null});
     // Delete refreshtoken from db
+    const deleteRequest={ refreshToken: this.state.refreshToken }
+    console.log('Delete request : ', deleteRequest)
     fetch(process.env.REACT_APP_AUTH_URL + "/logout", {
       method: "DELETE",
-      body: JSON.stringify({ refreshToken: this.state.refreshToken }),
+      body: JSON.stringify(deleteRequest),
       headers: {
         "Content-Type": "application/json",
       },
@@ -56,18 +62,13 @@ class App extends Component {
       .catch((err) => {
         console.log(err);
       });
-      // from localstorage, 
-      localStorage.removeItem("refreshToken");
-      localStorage.removeItem("userId");
-      localStorage.clear();
-      // from context
-      this.setState({ token: null, refreshToken: null, userId: null });
   };
 
   componentDidMount() {
-    //show the token if existing
-    if (this.state.refreshToken && process.env.NODE_ENV === "development") {
-      console.log("[Development] auth-context ", this.state);
+    //show tokens
+    if (process.env.NODE_ENV === "development") {
+      console.log("[Development] Access Token:  ", this.state.token);
+      console.log("[Development] Refresh Token:  ", this.state.refreshToken);
     }
 
     // call the the dummy endpoint to wake the backend.
@@ -106,7 +107,6 @@ class App extends Component {
               value={{
                 token: this.state.token,
                 refreshToken: this.state.refreshToken,
-                userId: this.state.userId,
                 login: this.login,
                 logout: this.logout,
               }}

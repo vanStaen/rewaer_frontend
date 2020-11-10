@@ -6,7 +6,7 @@ import {
   MailOutlined,
   LockOutlined,
   EyeInvisibleOutlined,
-  EyeTwoTone,
+  EyeOutlined,
 } from "@ant-design/icons";
 
 import "./LoginForm.css";
@@ -31,6 +31,8 @@ class LoginForm extends Component {
     const submitHandler = (values) => {
       const email = values.email;
       const password = values.password;
+
+      console.log('Form submitted!')
 
       let requestBody = { email: email, password: password };
 
@@ -80,16 +82,10 @@ class LoginForm extends Component {
             return res.json();
           })
           .then((resData) => {
-            if (resData.token) {
-              this.context.login(
-                resData.token,
-                resData.refreshToken,
-                resData.userId
-              );
-              localStorage.setItem("refreshToken", resData.refreshToken);
-              localStorage.setItem("userId", resData.userId);
-              //console.log(resData);
-            }
+            this.context.login(resData.token, resData.refreshToken);
+            localStorage.setItem("refreshToken", resData.refreshToken);
+            localStorage.setItem("userId", resData.userId);
+            console.log('Logged!')
           })
           .catch((err) => {
             console.log(err);
@@ -150,7 +146,7 @@ class LoginForm extends Component {
             prefix={<LockOutlined className="site-form-item-icon" />}
             placeholder="input Password"
             iconRender={(visible) =>
-              visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
             }
           />
         </Form.Item>

@@ -71,8 +71,7 @@ class LooksPage extends Component {
         console.log("TOKEN HAS EXPIRED!");
         this.context.login(
           null,
-          this.context.refreshToken,
-          this.context.userId
+          this.context.refreshToken
         );
       }
     }
@@ -97,8 +96,7 @@ class LooksPage extends Component {
           if (resData.token) {
             this.context.login(
               resData.token,
-              resData.refreshToken,
-              this.context.userId
+              resData.refreshToken
             );
           }
         })

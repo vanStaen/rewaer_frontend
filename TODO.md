@@ -4,6 +4,8 @@ Rewaer Front End
 
 ## To-dos:
 
+- [ ] upload images:
+  - https://blog.bitsrc.io/securely-upload-files-directly-from-browser-to-amazon-s3-b953c934ce4d
 - [ ] Check validity of refresh token
   - [ ] check if refresh token is valid
   - [ ] if not call logout

@@ -4,6 +4,12 @@ Rewaer Front End
 
 ## To-dos:
 
+- [ ] Upload Images
+  - [ ] Front end to Rest API : https://www.youtube.com/watch?v=b6Oe2puTdMQ
+  - [ ] Backend to database (s3)?: https://www.youtube.com/watch?v=srPXMt1Q0nY
+        alt: https://www.youtube.com/watch?v=XeiOnkEI7XI
+        alt: https://www.youtube.com/watch?v=KoWTJ5XiYm4
+        alt: (s3) https://www.youtube.com/watch?v=cDj4LPTLR3o
 - [ ] Check validity of refresh token
   - [ ] check if refresh token is valid
   - [ ] if not call logout

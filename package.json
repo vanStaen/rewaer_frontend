@@ -19,6 +19,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.7.3",
+    "aws-amplify": "^3.3.7",
     "axios": "^0.21.0",
     "jsonwebtoken": "^8.5.1",
     "react": "^17.0.1",

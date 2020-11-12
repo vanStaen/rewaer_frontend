@@ -68,22 +68,22 @@ class App extends Component {
       });
   };
 
-  componentDidMount() {
+  dummyCall() {
+
     //show tokens
     if (process.env.NODE_ENV === "development") {
-      console.log("[Render] Access Token:  ", this.state.token);
-      console.log("[Render] Refresh Token:  ", this.state.refreshToken);
+      console.log("[Start] Call dummy endpoint");
     }
 
     // call the the dummy endpoint to wake the backend.
     let requestBody = {
       query: `
-            query {
-              dummy {
-                dummy
-                }
-              }
-            `,
+                query {
+                  dummy {
+                    dummy
+                    }
+                  }
+                `,
     };
     fetch(process.env.REACT_APP_API_URL, {
       method: "POST",
@@ -100,6 +100,18 @@ class App extends Component {
         openNotification("Connection to server failed!");
         console.log(err);
       });
+  }
+
+  componentDidMount() {
+
+    this.dummyCall();
+
+    //show tokens
+    if (process.env.NODE_ENV === "development") {
+      console.log("[Start] Access Token:  ", this.state.token);
+      console.log("[Start] Refresh Token:  ", this.state.refreshToken);
+    }
+
   }
 
   render() {

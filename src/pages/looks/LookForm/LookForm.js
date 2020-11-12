@@ -9,7 +9,7 @@ const { Dragger } = Upload;
 const props = {
   name: 'file',
   multiple: false,
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',  
+  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   headers: {
     authorization: 'authorization-text',
   },
@@ -28,16 +28,16 @@ const props = {
 
 
 const LookForm = () => {
- 
+
   return (
-    <div className="this">
+    <div className="lookform__main">
       <Dragger {...props}>
         <p className="ant-upload-drag-icon">
           <CameraOutlined />
         </p>
         <p className="ant-upload-text">Create Look</p>
         <p className="ant-upload-hint">
-          Start with a photo <br/>
+          Start with a photo <br />
         Click, or drag here a file
         </p>
       </Dragger>

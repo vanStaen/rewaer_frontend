@@ -2,15 +2,20 @@ import { Col, Row } from "antd";
 import CheckToken from "../../helpers/CheckToken"
 import React, { Component } from "react";
 
-//import LookCard from "./LookCard";
-import LookForm from "./LookForm";
+import LookCard from "./LookCard/LookCard";
+import LookForm from "./LookForm/LookForm";
 import AuthContext from "../../context/auth-context";
-
-import "./Looks.css";
 
 class LooksPage extends Component {
 
+  state = {
+    looks: [],
+  }
   static contextType = AuthContext;
+
+  componentDidMount() {
+    this.loadLooks();
+  }
 
   loadLooks(userId) {
     const requestBody = {
@@ -41,6 +46,8 @@ class LooksPage extends Component {
         return res.json();
       })
       .then(resData => {
+        const looks = resData.data.looks;
+        this.setState({ looks: looks });
         console.log(resData);
       })
       .catch((err) => {
@@ -48,11 +55,15 @@ class LooksPage extends Component {
       });
   };
 
-  componentDidMount() {
-    this.loadLooks();
-  }
 
   render() {
+
+    const lookList = this.state.looks.map(look => {
+      return (<Col key={look._Id}>
+        <LookCard num={look.mediaUrl.replace('.jpg', '')} title={look.mediaUrl.replace('.jpg', '')} />
+      </Col>);
+    })
+
     return (
       <div>
         <CheckToken />
@@ -60,9 +71,7 @@ class LooksPage extends Component {
           <Col>
             <LookForm />
           </Col>
-          {/*<Col>
-            <LookCard num="43" title="43" />
-          </Col>*/}
+          {lookList}
         </Row>
       </div>
     );

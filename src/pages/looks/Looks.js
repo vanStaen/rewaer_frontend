@@ -17,11 +17,10 @@ class LooksPage extends Component {
         query: `
               query {
                   looks {
-                    _id
                     title
                     active
                     favorite
-                    dateCreated
+                    mediaUrl
                   }
                 }
                 `,

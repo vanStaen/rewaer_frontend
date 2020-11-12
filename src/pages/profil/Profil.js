@@ -15,10 +15,11 @@ class ProfilPage extends Component {
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const userId = localStorage.getItem("userId");
 
+
     return (
       <div>
         <CheckToken />
-        <Title level={3}>Hello, {storedUser.name}
+        <Title level={3}>Hello, {storedUser ? storedUser.name : 'there'}
         </Title>
         <Paragraph copyable>
           <b>User ID:</b> {userId}

@@ -7,7 +7,7 @@ const { Meta } = Card;
 
 const LookCard = (props) => {
   const picThumb =
-    "https://rewaer-backend.herokuapp.com/old/" + props.url + "_thumb.jpg";
+    "https://rewaer-backend.herokuapp.com/old/" + props.num + "_thumb.jpg";
   const pic =
     "https://rewaer-backend.herokuapp.com/old/" + props.num + ".jpg";
   const title = props.title;

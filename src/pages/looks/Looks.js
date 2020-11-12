@@ -1,8 +1,8 @@
 import { Col, Row } from "antd";
+import CheckToken from "../../helpers/CheckToken"
 import React, { Component } from "react";
-import jsonwebtoken from "jsonwebtoken";
 
-import LookCard from "./LookCard";
+//import LookCard from "./LookCard";
 import LookForm from "./LookForm";
 import AuthContext from "../../context/auth-context";
 
@@ -55,6 +55,7 @@ class LooksPage extends Component {
   render() {
     return (
       <div>
+        <CheckToken />
         <Row justify={"space-around"}>
           <Col>
             <LookForm />

@@ -4,6 +4,7 @@ Rewaer Front End
 
 ## To-dos:
 
+- [ ] Loader when loading
 - [ ] Upload Images
   - [ ] Front end to Rest API : https://www.youtube.com/watch?v=b6Oe2puTdMQ
   - [ ] Backend to database (s3)?: https://www.youtube.com/watch?v=srPXMt1Q0nY

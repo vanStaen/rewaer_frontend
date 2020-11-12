@@ -11,11 +11,15 @@ class ProfilPage extends Component {
   static contextType = AuthContext;
 
   render() {
+
+    const storedUser = JSON.parse(localStorage.getItem('user'));
     const userId = localStorage.getItem("userId");
+
     return (
       <div>
         <CheckToken />
-        <Title level={3}>Hello, User</Title>
+        <Title level={3}>Hello, {storedUser.name}
+        </Title>
         <Paragraph copyable>
           <b>User ID:</b> {userId}
         </Paragraph>

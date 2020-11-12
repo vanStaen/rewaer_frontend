@@ -28,11 +28,14 @@ class LoginForm extends Component {
   };
 
   render() {
+
     const submitHandler = (values) => {
       const email = values.email;
       const password = values.password;
 
-      console.log('Form submitted!')
+      if (process.env.NODE_ENV === "development") {
+        console.log("[login] Form submitted!");
+      }
 
       let requestBody = { email: email, password: password };
 
@@ -67,6 +70,7 @@ class LoginForm extends Component {
             console.log(err);
           });
       } else {
+
         // Login
         fetch(process.env.REACT_APP_AUTH_URL + "/login", {
           method: "POST",
@@ -88,6 +92,45 @@ class LoginForm extends Component {
             if (process.env.NODE_ENV === "development") {
               console.log("[login] Logged!");
             }
+            // get user info and load them in localstorage
+            const requestBody = {
+              query: `
+                    query {
+                      user {
+                        name
+                        email
+                        dateCreated
+                        avatar
+                        active
+                      }
+                    }
+                      `,
+            };
+            fetch(process.env.REACT_APP_API_URL, {
+              method: "POST",
+              body: JSON.stringify(requestBody),
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + resData.token,
+              },
+            })
+              .then((res) => {
+                if ((res.status !== 200) & (res.status !== 201)) {
+                  throw new Error("Unauthenticated!");
+                }
+                return res.json();
+              })
+              .then(resData => {
+                const user = resData.data.user[0];
+                localStorage.setItem('user', JSON.stringify(user));
+                const storedUser = JSON.parse(localStorage.getItem('user'));
+                if (process.env.NODE_ENV === "development") {
+                  console.log("[login] Save user object to Local Storage:", storedUser);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           })
           .catch((err) => {
             console.log(err);

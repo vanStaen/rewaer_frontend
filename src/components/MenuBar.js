@@ -29,8 +29,9 @@ class MenuBar extends Component {
   };
 
   render() {
-    console.log();
+
     const { menuSelected } = this.state;
+
     return (
       <Menu
         onClick={this.handleClick}
@@ -54,7 +55,7 @@ class MenuBar extends Component {
               <NavLink to="/profile">
                 <Badge count={5} offset={[0, 5]}>
                   <Avatar
-                    src="https://avatars0.githubusercontent.com/u/12551446?s=460"
+                    src={"https://avatars0.githubusercontent.com/u/12551446"}
                     size="large"
                   />
                 </Badge>
@@ -73,14 +74,14 @@ class MenuBar extends Component {
             </Menu.ItemGroup> */}
           </SubMenu>
         ) : (
-          <Menu.Item
-            key="auth"
-            icon={<UserOutlined />}
-            style={{ float: "right" }}
-          >
-            <NavLink to="/auth"> Login</NavLink>
-          </Menu.Item>
-        )}
+            <Menu.Item
+              key="auth"
+              icon={<UserOutlined />}
+              style={{ float: "right" }}
+            >
+              <NavLink to="/auth"> Login</NavLink>
+            </Menu.Item>
+          )}
 
         <Menu.Item
           key="looks"
@@ -109,7 +110,7 @@ class MenuBar extends Component {
         <Menu.Item
           key="friends"
           icon={<TeamOutlined />}
-          
+
           style={{ float: "left" }}
         >
           <NavLink to="/friends"> Friends</NavLink>

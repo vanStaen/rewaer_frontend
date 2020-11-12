@@ -30,11 +30,15 @@ const openNotification = (msg) => {
 class App extends Component {
   state = {
     token: null,
-    refreshToken: refreshToken || null,
+    refreshToken: refreshToken || null,
   };
 
   login = (token, refreshToken) => {
     this.setState({ token: token, refreshToken: refreshToken });
+    if (process.env.NODE_ENV === "development") {
+      console.log("[login] Access Token:  ", this.state.token);
+      console.log("[login] Refresh Token:  ", this.state.refreshToken);
+    }
   };
 
   logout = () => {
@@ -43,9 +47,9 @@ class App extends Component {
     localStorage.removeItem("userId");
     localStorage.clear();
     // Delete token from context
-    this.setState({ token: null, refreshToken: null});
+    this.setState({ token: null, refreshToken: null });
     // Delete refreshtoken from db
-    const deleteRequest={ refreshToken: this.state.refreshToken }
+    const deleteRequest = { refreshToken: this.state.refreshToken }
     console.log('Delete request : ', deleteRequest)
     fetch(process.env.REACT_APP_AUTH_URL + "/logout", {
       method: "DELETE",
@@ -67,8 +71,8 @@ class App extends Component {
   componentDidMount() {
     //show tokens
     if (process.env.NODE_ENV === "development") {
-      console.log("[Development] Access Token:  ", this.state.token);
-      console.log("[Development] Refresh Token:  ", this.state.refreshToken);
+      console.log("[Render] Access Token:  ", this.state.token);
+      console.log("[Render] Refresh Token:  ", this.state.refreshToken);
     }
 
     // call the the dummy endpoint to wake the backend.

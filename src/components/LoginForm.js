@@ -85,7 +85,9 @@ class LoginForm extends Component {
             this.context.login(resData.token, resData.refreshToken);
             localStorage.setItem("refreshToken", resData.refreshToken);
             localStorage.setItem("userId", resData.userId);
-            console.log('Logged!')
+            if (process.env.NODE_ENV === "development") {
+              console.log("[login] Logged!");
+            }
           })
           .catch((err) => {
             console.log(err);

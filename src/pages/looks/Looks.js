@@ -9,6 +9,7 @@ import AuthContext from "../../context/auth-context";
 import "./Looks.css";
 
 class LooksPage extends Component {
+
   static contextType = AuthContext;
 
   render() {
@@ -39,9 +40,6 @@ class LooksPage extends Component {
             throw new Error("Unauthenticated!");
           }
           return res.json();
-        })
-        .then((resData) => {
-          console.log(resData);
         })
         .catch((err) => {
           console.log(err);
@@ -85,13 +83,10 @@ class LooksPage extends Component {
           "Content-Type": "application/json",
         },
       })
-        .then((res) => {
-          if (res.status !== 201) {
+        .then((resData) => {
+          if (resData.status !== 201) {
             throw new Error("Error when refreshing the token!");
           }
-          return res.json();
-        })
-        .then((resData) => {
           if (resData.token) {
             this.context.login(
               resData.token,
@@ -111,42 +106,9 @@ class LooksPage extends Component {
           <Col>
             <LookForm />
           </Col>
-          <Col>
+          {/*<Col>
             <LookCard num="43" title="43" />
-          </Col>
-          <Col>
-            <LookCard num="46" title="46" />
-          </Col>
-          <Col>
-            <LookCard num="49" title="49" />
-          </Col>
-          <Col>
-            <LookCard num="64" title="64" />
-          </Col>
-          <Col>
-            <LookCard num="88" title="88" />
-          </Col>
-          <Col>
-            <LookCard num="99" title="99" />
-          </Col>
-          <Col>
-            <LookCard num="100" title="100" />
-          </Col>
-          <Col>
-            <LookCard num="104" title="104" />
-          </Col>
-          <Col>
-            <LookCard num="106" title="106" />
-          </Col>
-          <Col>
-            <LookCard num="112" title="112" />
-          </Col>
-          <Col>
-            <LookCard num="126" title="126" />
-          </Col>
-          <Col>
-            <LookCard num="136" title="136" />
-          </Col>
+          </Col>*/}
         </Row>
       </div>
     );

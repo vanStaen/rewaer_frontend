@@ -13,7 +13,7 @@ class CheckToken extends Component {
     checkToken() {
 
         if (process.env.NODE_ENV === "development") {
-            console.log("[Script] Check access token");
+            console.log("[script] Check access token");
         }
 
         // Check if refreshtoken is expired
@@ -23,7 +23,7 @@ class CheckToken extends Component {
             });
             let dateNow = new Date();
             if (decodedRefreshToken.exp < Math.floor(dateNow.getTime() / 1000)) {
-                console.log("REFRESH TOKEN HAS EXPIRED!");
+                console.log("[script] REFRESH TOKEN HAS EXPIRED!");
                 this.context.logout();
             }
         }
@@ -35,7 +35,7 @@ class CheckToken extends Component {
             });
             let dateNow = new Date();
             if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
-                console.log("TOKEN HAS EXPIRED!");
+                console.log("[script] TOKEN HAS EXPIRED!");
                 this.context.login(
                     null,
                     this.context.refreshToken

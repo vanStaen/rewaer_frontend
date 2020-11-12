@@ -17,7 +17,7 @@ class LooksPage extends Component {
     this.loadLooks();
   }
 
-  loadLooks(userId) {
+  loadLooks() {
     const requestBody = {
       query: `
             query {

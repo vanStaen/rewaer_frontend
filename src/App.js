@@ -45,12 +45,15 @@ class App extends Component {
     // Delete refreshtoken from localstorage, 
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("userId");
+    localStorage.removeItem("user");
     localStorage.clear();
     // Delete token from context
     this.setState({ token: null, refreshToken: null });
     // Delete refreshtoken from db
     const deleteRequest = { refreshToken: this.state.refreshToken }
-    console.log('Delete request : ', deleteRequest)
+    if (process.env.NODE_ENV === "development") {
+      console.log("[logout] Delete request:", deleteRequest);
+    }
     fetch(process.env.REACT_APP_AUTH_URL + "/logout", {
       method: "DELETE",
       body: JSON.stringify(deleteRequest),
@@ -72,7 +75,7 @@ class App extends Component {
 
     //show tokens
     if (process.env.NODE_ENV === "development") {
-      console.log("[Start] Call dummy endpoint");
+      console.log("[start] Call dummy endpoint");
     }
 
     // call the the dummy endpoint to wake the backend.
@@ -96,7 +99,7 @@ class App extends Component {
         return res.json();
       })
       .catch((err) => {
-        console.log("Error connecting to the back end");
+        console.log("[start] Error connecting to the back end");
         openNotification("Connection to server failed!");
         console.log(err);
       });
@@ -108,8 +111,8 @@ class App extends Component {
 
     //show tokens
     if (process.env.NODE_ENV === "development") {
-      console.log("[Start] Access Token:  ", this.state.token);
-      console.log("[Start] Refresh Token:  ", this.state.refreshToken);
+      console.log("[start] Access Token:  ", this.state.token);
+      console.log("[start] Refresh Token:  ", this.state.refreshToken);
     }
 
   }

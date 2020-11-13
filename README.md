@@ -18,7 +18,23 @@ heroku buildpacks:clear
 heroku buildpacks:set https://github.com/mars/create-react-app-buildpack
 ```
 
-## RESSOURCE
+## LEARNING:
+
+### State management
+
+So far I have been using the context API to store information between component: Coupled with usage of local storage, this seems to work fine, but is still working a bit crooked. I neeg to spent some time with *MobX* or *Redux* as I think those are what I will need to use in the near future. 
+
+### Fetch() vs Axios()
+
+Through this project I use a mix of both solution to fetch data from the backend. I will clean it inorder to user only axios, even though I haven't found a huge advantage at using Axios so far. 
+
+
+## RESSOURCES
+
+### Tutorial I followed:
+
+- React File Uploader (with Axios) : https://www.youtube.com/watch?v=b6Oe2puTdMQ </br>
+- 
 
 #### npm run eject
 
@@ -48,3 +64,5 @@ AntD comes with a standart babyBlue custom color scheme: One can overwrite and c
 5. In `app.css`, update the first import to target the file created file: `@import "../src/style/rewaer-antd.css";`
 
 Link to te Original tutorial: https://medium.com/@okoriechinedusunday/a-baby-guide-to-overriding-antdesign-theme-and-color-aa6df1f85e0
+
+

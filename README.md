@@ -22,11 +22,12 @@ heroku buildpacks:set https://github.com/mars/create-react-app-buildpack
 
 ### State management
 
-So far I have been using the context API to store information between component: Coupled with usage of local storage, this seems to work fine, but is still working a bit crooked. I neeg to spent some time with *MobX* or *Redux* as I think those are what I will need to use in the near future. 
+So far I have been using the context API to store information between component: Coupled with usage of local storage, this seems to work fine, but is still working a bit crooked. I neeg to spent some time with *MobX* or *Redux* as I think those are what I will need to use in the near future. Maybe watching this will help: https://www.youtube.com/watch?v=OvM4hIxrqAw.
 
 ### Fetch() vs Axios()
 
-Through this project I use a mix of both solution to fetch data from the backend. I will clean it inorder to user only axios, even though I haven't found a huge advantage at using Axios so far. MAybe watching this will help: https://www.youtube.com/watch?v=OvM4hIxrqAw.
+Through this project I use a mix of both solution to fetch data from the backend. I will clean it inorder to user only axios, even though I haven't found a huge advantage at using Axios so far. Reading this (https://blog.logrocket.com/axios-or-fetch-api/) was instructive, but not really telling you where to fall.
+
 
 
 ## RESSOURCES

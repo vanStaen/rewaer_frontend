@@ -1,74 +1,50 @@
-import React from "react";
-import { Upload, Modal } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import React, { Fragment } from "react";
+import axios from "axios";
+import AuthContext from "../../context/auth-context";
 
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
-}
-
-class ItemsPage extends React.Component {
+export default class ItemsPage extends React.Component {
   state = {
-    previewVisible: false,
-    previewImage: "",
-    previewTitle: "hello",
-    fileList: [],
+    file: null,
+    fileName: null,
+    uploadedFileName: null,
   };
 
-  handleCancel = () => this.setState({ previewVisible: false });
+  static contextType = AuthContext;
 
-  handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
+  fileSelectHandler = event => {
+    this.setState({ file: event.target.files[0] });
+    this.setState({ fileName: event.target.files[0].name });
+  }
+
+  submitHandler = async event => {
+    event.preventDefault();
+    const file = event.target.fileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const res = await axios.post(process.env.REACT_APP_API_URL_UPLOAD, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + this.context.token,
+        }
+      })
+      this.state.uploadedFileName = res.data.uploadedFileName
+      console.log("Success", this.state.uploadedFileName);
+
+    } catch (err) {
+      console.log(err)
     }
-
-    this.setState({
-      previewImage: file.url || file.preview,
-      previewVisible: true,
-      previewTitle:
-        file.name || file.url.substring(file.url.lastIndexOf("/") + 1),
-    });
-  };
-
-  handleChange = ({ fileList }) => this.setState({ fileList });
+  }
 
   render() {
-    const { previewVisible, previewImage, fileList, previewTitle } = this.state;
-    const uploadButton = (
-      <div>
-        <PlusOutlined />
-        <div style={{ marginTop: 8 }}>Upload</div>
-      </div>
-    );
-
-    console.log(fileList);
 
     return (
-      <>
-        <Upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          listType="picture-card"
-          fileList={fileList}
-          onPreview={this.handlePreview}
-          onChange={this.handleChange}
-        >
-          {fileList.length >= 20 ? null : uploadButton}
-        </Upload>
-        <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={this.handleCancel}
-        >
-          <img alt="example" style={{ width: "100%" }} src={previewImage} />
-        </Modal>
-      </>
-    );
+      <Fragment>
+        <form onSubmit={this.submitHandler}>
+          <input type="file" id="file" name="fileInput" onChange={this.fileSelectHandler} />
+          <input type="submit" />
+        </form>
+      </Fragment >
+    )
   }
 }
-
-export default ItemsPage;

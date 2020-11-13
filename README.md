@@ -37,8 +37,9 @@ I could use Axios to listen for 401 error (from graphql error message "Unauthent
 ### Tutorial I followed:
 
 - React File Uploader (with Axios) : https://www.youtube.com/watch?v=b6Oe2puTdMQ </br>
+- Overwrite AntD color scheme : https://medium.com/@okoriechinedusunday/a-baby-guide-to-overriding-antdesign-theme-and-color-aa6df1f85e0 </br>
 
-#### npm run eject
+### npm run eject
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -48,7 +49,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-#### Overwrite Antd standart color
+### Overwrite Antd standart color
 
 AntD comes with a standart babyBlue custom color scheme: One can overwrite and customise every single componennt, or change the whole color-theme of ant. Therefore follow the following steps:
 
@@ -65,6 +66,5 @@ AntD comes with a standart babyBlue custom color scheme: One can overwrite and c
 4. From the directory `/node_module/antd/dist` run `lessc -js my-theme.less ../../../src/style/rewaer-antd.css`.
 5. In `app.css`, update the first import to target the file created file: `@import "../src/style/rewaer-antd.css";`
 
-Link to te Original tutorial: https://medium.com/@okoriechinedusunday/a-baby-guide-to-overriding-antdesign-theme-and-color-aa6df1f85e0
 
 

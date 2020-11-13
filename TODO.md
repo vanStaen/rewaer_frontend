@@ -4,13 +4,16 @@ Rewaer Front End
 
 ## To-dos:
 
-- [ ] Loader when loading
+
 - [ ] Upload Images
   - [ ] Front end to Rest API : https://www.youtube.com/watch?v=b6Oe2puTdMQ
   - [ ] Backend to database (s3)?: https://www.youtube.com/watch?v=srPXMt1Q0nY
         alt: https://www.youtube.com/watch?v=XeiOnkEI7XI
         alt: https://www.youtube.com/watch?v=KoWTJ5XiYm4
         alt: (s3) https://www.youtube.com/watch?v=cDj4LPTLR3o
+- [ ] add Delete look feature
+- [ ] Loader when loading card component
+- [ ] Find a better solution to check/refreshToken
 - [ ] First refactoring round:
   - [ ] in as many stateless component as possible
   - [ ] check state usage in already created component

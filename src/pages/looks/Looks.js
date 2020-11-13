@@ -1,5 +1,4 @@
 import { Col, Row } from "antd";
-import CheckToken from "../../helpers/CheckToken"
 import React, { Component } from "react";
 
 import LookCard from "./LookCard/LookCard";
@@ -66,7 +65,6 @@ class LooksPage extends Component {
 
     return (
       <div>
-        <CheckToken />
         <Row justify={"space-around"}>
           <Col>
             <LookForm />

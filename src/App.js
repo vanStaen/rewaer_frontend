@@ -16,13 +16,12 @@ import "./App.css";
 
 const refreshToken = localStorage.getItem("refreshToken");
 
-const openNotification = (msg) => {
+const openNotification = (msg, desc, showtime, type) => {
   notification.open({
     message: msg,
-    description:
-      "The connection could not be established with the backend server.",
-    duration: 0,
-    type: "error",
+    description: desc,
+    duration: showtime,
+    type: type,
     placement: "bottomRight",
   });
 };
@@ -63,8 +62,11 @@ class App extends Component {
     })
       .then((res) => {
         if (res.status !== 204) {
+          openNotification("Error " + res.status,
+            "Error on logout: The refresh token was not found in the token database.", 0, "error");
           throw new Error("Error when logout!"); // Probably was the refresh not found in the db
         }
+        openNotification("You have successfully log out.", "", 3, "success");
       })
       .catch((err) => {
         console.log(err);
@@ -100,7 +102,8 @@ class App extends Component {
       })
       .catch((err) => {
         console.log("[start] Error connecting to the back end");
-        openNotification("Connection to server failed!");
+        openNotification("Connection to server failed!",
+          "The connection could not be established with the backend server.", 0, "warning");
         console.log(err);
       });
   }

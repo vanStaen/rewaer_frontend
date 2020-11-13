@@ -92,7 +92,7 @@ class LoginForm extends Component {
           if ((response.status !== 200) & (response.status !== 201)) {
             const error = await response.json();
             openNotification(error.error, "", 3, "warning")
-            const message = `An error has occured: ${response.status} - {error.error}`;
+            const message = `An error has occured: ${response.status} - ${error.error}`;
             throw new Error(message);
           }
           const login = await response.json();

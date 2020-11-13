@@ -15,11 +15,12 @@ Rewaer Front End
   - [ ] in as many stateless component as possible
   - [ ] check state usage in already created component
   - [ ] Check class vs function component
-- [ ] Handle Log/signin Errors from backend (and display those)
 - [ ] Handle new account created
   - [ ] Show success message in App
   - [ ] Send Email to new user
-- [ ] Restore Pwd feature
+  - [ ] handle errors from backend
+- [ ] Recover password feature
+- [ ] Remember me feature
 
 ## Completed ✓
 
@@ -34,3 +35,9 @@ Rewaer Front End
   - [] Kill refresh token on logout
   - [x] Handle when token not valid anymore
 - [x] Check and handle validity of refresh token
+- [x] Handle errors from backend (and display those)
+  - [x] Show login error: email not known
+  - [x] Show login error: wrong password
+  - [x] Show logout error
+  - [x] Show successfull login
+  - [x] Show successfull logout

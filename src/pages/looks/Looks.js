@@ -21,6 +21,7 @@ class LooksPage extends Component {
       query: `
             query {
                 looks {
+                  _id
                   title
                   active
                   favorite
@@ -30,39 +31,39 @@ class LooksPage extends Component {
               `,
     };
 
-    fetch(process.env.REACT_APP_API_URL, {
-      method: "POST",
-      body: JSON.stringify(requestBody),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + this.context.token,
-      },
-    })
-      .then((res) => {
-        if ((res.status !== 200) & (res.status !== 201)) {
-          throw new Error("Unauthenticated!");
-        }
-        return res.json();
-      })
-      .then(resData => {
-        const looks = resData.data.looks;
-        this.setState({ looks: looks });
-        console.log(resData);
-      })
-      .catch((err) => {
-        console.log(err);
+    async function fetchLooks(token) {
+      const response = await fetch(process.env.REACT_APP_API_URL, {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
       });
+      if ((response.status !== 200) & (response.status !== 201)) {
+        throw new Error("Unauthenticated!");
+      }
+      const looks = await response.json();
+      return looks;
+    }
+    // fetch Looks
+    fetchLooks(this.context.token).then((resData) => {
+      const looks = resData.data.looks;
+      this.setState({ looks: looks });
+    }
+    ).catch(error => {
+      console.log(error.message);
+    });
   };
 
 
   render() {
-
     const lookList = this.state.looks.map(look => {
-      return (<Col key={look._Id}>
-        <LookCard num={look.mediaUrl.replace('.jpg', '')} title={look.mediaUrl.replace('.jpg', '')} />
+      const mediaUrl = look.mediaUrl.replace('.jpg', '');
+      return (<Col key={look._id}>
+        <LookCard num={mediaUrl} title={"#" + mediaUrl} />
       </Col>);
     })
-
     return (
       <div>
         <Row justify={"space-around"}>

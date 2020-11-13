@@ -49,6 +49,75 @@ class LoginForm extends Component {
 
       let requestBody = { email: email, password: password };
 
+      async function createUser() {
+        const response = await fetch(process.env.REACT_APP_API_URL, {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if ((response.status !== 200) & (response.status !== 201)) {
+          const error = await response.json();
+          console.log(error);
+          openNotification(error.errors[0].message, "", 3, "warning")
+          const message = `An error has occured: ${response.status} - ${error.errors[0].message}`;
+          throw new Error(message);
+        }
+        const login = await response.json();
+        return login;
+      }
+
+      async function fetchLogin() {
+        const response = await fetch(process.env.REACT_APP_AUTH_URL + "/login", {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if ((response.status !== 200) & (response.status !== 201)) {
+          const error = await response.json();
+          openNotification(error.error, "", 3, "warning")
+          const message = `An error has occured: ${response.status} - ${error.error}`;
+          throw new Error(message);
+        }
+        const login = await response.json();
+        return login;
+      }
+
+      async function fetchUser(token) {
+        const requestBody = {
+          query: `
+                query {
+                  user {
+                    name
+                    email
+                    dateCreated
+                    avatar
+                    active
+                  }
+                }
+                  `,
+        };
+        const response = await fetch(process.env.REACT_APP_API_URL, {
+          method: "POST",
+          body: JSON.stringify(requestBody),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+        if ((response.status !== 200) & (response.status !== 201)) {
+          const error = await response.json();
+          openNotification("Error " + response.status, error.error, 0, "error")
+          const message = `An error has occured: ${response.status}`;
+          throw new Error(message);
+        }
+        const user = await response.json();
+        return user;
+      }
+
       // Register
       if (!this.state.isLogin) {
         const username = values.username;
@@ -63,74 +132,13 @@ class LoginForm extends Component {
                 }
                 `,
         };
-        fetch(process.env.REACT_APP_API_URL, {
-          method: "POST",
-          body: JSON.stringify(requestBody),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => {
-            if ((res.status !== 200) & (res.status !== 201)) {
-              throw new Error("Error when registering!");
-            }
-            return res.json();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        createUser().then((resData) => {
+          const newUser = resData.data.createUser.name;
+          openNotification("Account successully created.", "Kudos to you " + newUser + "! You can now log into your account.", 5, "success");
+        }).catch(error => {
+          console.log(error.message);
+        });
       } else {
-
-        async function fetchLogin() {
-          const response = await fetch(process.env.REACT_APP_AUTH_URL + "/login", {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          if ((response.status !== 200) & (response.status !== 201)) {
-            const error = await response.json();
-            openNotification(error.error, "", 3, "warning")
-            const message = `An error has occured: ${response.status} - ${error.error}`;
-            throw new Error(message);
-          }
-          const login = await response.json();
-          return login;
-        }
-
-        async function fetchUser(token) {
-          const requestBody = {
-            query: `
-                  query {
-                    user {
-                      name
-                      email
-                      dateCreated
-                      avatar
-                      active
-                    }
-                  }
-                    `,
-          };
-          const response = await fetch(process.env.REACT_APP_API_URL, {
-            method: "POST",
-            body: JSON.stringify(requestBody),
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-          });
-          if ((response.status !== 200) & (response.status !== 201)) {
-            const error = await response.json();
-            openNotification("Error " + response.status, error.error, 0, "error")
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message);
-          }
-          const user = await response.json();
-          return user;
-        }
-
         // login
         fetchLogin().then((resData) => {
           this.context.login(resData.token, resData.refreshToken);

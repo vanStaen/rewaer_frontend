@@ -4,13 +4,11 @@ Rewaer Front End
 
 ## To-dos:
 
-
 - [ ] Upload Images
   - [x] Front end to Rest API
   - [x] Handling request in Backend
   - [ ] Backend to AWS S3 https://www.youtube.com/watch?v=cDj4LPTLR3o
 - [ ] add Delete look feature
-- [ ] Loader when loading card component
 - [ ] Find a better solution to check/refreshToken
 - [ ] First refactoring round:
   - [ ] in as many stateless component as possible
@@ -42,3 +40,4 @@ Rewaer Front End
   - [x] Show logout error
   - [x] Show successfull login
   - [x] Show successfull logout
+- [x] Loader when loading images of card component

@@ -22,15 +22,15 @@ heroku buildpacks:set https://github.com/mars/create-react-app-buildpack
 
 ### State management
 
-So far I have been using the context API to store information between component: Coupled with usage of local storage, this seems to work fine, but is still working a bit crooked. I neeg to spent some time with *MobX* or *Redux* as I think those are what I will need to use in the near future. Maybe watching this will help: https://www.youtube.com/watch?v=OvM4hIxrqAw.
+So far I have been using the context API to store information between component: Coupled with usage of local storage, this seems to work fine, but is still working a bit crooked. I neeg to spent some time with _MobX_ or _Redux_ as I think those are what I will need to use in the near future. Maybe watching this will help: https://www.youtube.com/watch?v=OvM4hIxrqAw.
 
 ### Fetch() vs Axios()
 
 Through this project I use a mix of both solution to fetch data from the backend. I will clean it inorder to user only axios, even though I haven't found a huge advantage at using Axios so far. Reading this (https://blog.logrocket.com/axios-or-fetch-api/) was instructive, but not really telling you where to fall.
 
-#### Axios interceptors? 
-I could use Axios to listen for 401 error (from graphql error message "Unauthenticated!"), and trigger a token refresh when needed: https://thedutchlab.com/blog/using-axios-interceptors-for-refreshing-your-api-token
+#### Axios interceptors?
 
+I could use Axios to listen for 401 error (from graphql error message "Unauthenticated!"), and trigger a token refresh when needed: https://thedutchlab.com/blog/using-axios-interceptors-for-refreshing-your-api-token
 
 ## RESSOURCES
 
@@ -38,6 +38,7 @@ I could use Axios to listen for 401 error (from graphql error message "Unauthent
 
 - React File Uploader (with Axios) : https://www.youtube.com/watch?v=b6Oe2puTdMQ </br>
 - Overwrite AntD color scheme : https://medium.com/@okoriechinedusunday/a-baby-guide-to-overriding-antdesign-theme-and-color-aa6df1f85e0 </br>
+- Spinner on imnage load: https://www.javascriptstuff.com/detect-image-load/ </br>
 
 ### npm run eject
 
@@ -65,6 +66,3 @@ AntD comes with a standart babyBlue custom color scheme: One can overwrite and c
 
 4. From the directory `/node_module/antd/dist` run `lessc -js my-theme.less ../../../src/style/rewaer-antd.css`.
 5. In `app.css`, update the first import to target the file created file: `@import "../src/style/rewaer-antd.css";`
-
-
-

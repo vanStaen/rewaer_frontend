@@ -66,7 +66,7 @@ class App extends Component {
             "Error on logout: The refresh token was not found in the token database.", 0, "error");
           throw new Error("Error when logout!"); // Probably was the refresh not found in the db
         }
-        openNotification("You have logged out successfully.", "", 3, "success");
+        openNotification("You have successfully logged out.", "", 3, "success");
       })
       .catch((err) => {
         console.log(err);

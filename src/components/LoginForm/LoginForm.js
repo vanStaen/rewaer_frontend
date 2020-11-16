@@ -144,7 +144,7 @@ class LoginForm extends Component {
           this.context.login(resData.token, resData.refreshToken);
           localStorage.setItem("refreshToken", resData.refreshToken);
           localStorage.setItem("userId", resData.userId);
-          openNotification("You have logged in successfully.", "", 3, "success");
+          openNotification("You have successfully logged in.", "", 3, "success");
           if (process.env.NODE_ENV === "development") {
             console.log("[login] Logged!");
           }

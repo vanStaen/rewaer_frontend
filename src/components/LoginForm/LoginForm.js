@@ -42,6 +42,7 @@ class LoginForm extends Component {
     const submitHandler = (values) => {
       const email = values.email;
       const password = values.password;
+      const remember = values.remember;
 
       if (process.env.NODE_ENV === "development") {
         console.log("[login] Form submitted!");
@@ -142,9 +143,19 @@ class LoginForm extends Component {
         // login
         fetchLogin().then((resData) => {
           this.context.login(resData.token, resData.refreshToken);
-          localStorage.setItem("refreshToken", resData.refreshToken);
-          localStorage.setItem("userId", resData.userId);
-          openNotification("You have successfully logged in.", "", 3, "success");
+          if (remember === true) {
+            if (process.env.NODE_ENV === "development") {
+              console.log('[login] Remember:', remember)
+            }
+            // Store RefreshToken and ID, only if "remember" set to true.
+            localStorage.setItem("refreshToken", resData.refreshToken);
+            localStorage.setItem("userId", resData.userId);
+          } else {
+            if (process.env.NODE_ENV === "development") {
+              console.log('[login] Remember:', remember)
+            }
+          }
+          openNotification("You have successully log in.", "", 3, "success");
           if (process.env.NODE_ENV === "development") {
             console.log("[login] Logged!");
           }
@@ -152,7 +163,7 @@ class LoginForm extends Component {
           fetchUser(resData.token).then(resData => {
             const user = resData.data.user[0];
             localStorage.setItem('user', JSON.stringify(user));
-            const storedUser = JSON.parse(localStorage.getItem('user'));
+            const storedUser = JSON.parse(user);
             if (process.env.NODE_ENV === "development") {
               console.log("[login] Save user object to Local Storage:", storedUser);
             }

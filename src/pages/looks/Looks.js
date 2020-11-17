@@ -1,19 +1,23 @@
-import { Col, Row } from "antd";
+import { Col, Row, Spin } from "antd";
 import React, { Component } from "react";
 
 import LookCard from "./LookCard/LookCard";
 import LookForm from "./LookForm/LookForm";
 import AuthContext from "../../context/auth-context";
 
+import "./Looks.css";
+
 class LooksPage extends Component {
 
   state = {
     looks: [],
+    isLoading: true,
   }
   static contextType = AuthContext;
 
   componentDidMount() {
     this.loadLooks();
+    this.state.isLoading = false;
   }
 
   loadLooks() {
@@ -66,12 +70,19 @@ class LooksPage extends Component {
     })
     return (
       <div>
-        <Row justify={"space-around"}>
-          <Col>
-            <LookForm />
-          </Col>
-          {lookList}
-        </Row>
+        { this.state.isLoading ?
+          <div className="looks__spinner">
+            <Spin size="large" />
+          </div>
+          :
+          (<Row justify={"space-around"}>
+            <Col>
+              <LookForm />
+            </Col>
+            {lookList}
+          </Row>)
+        }
+
       </div>
     );
   }

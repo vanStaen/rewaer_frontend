@@ -8,18 +8,18 @@ Rewaer Front End
   - [x] Front end to Rest API
   - [x] Handling request in Backend
   - [ ] Backend to AWS S3 https://www.youtube.com/watch?v=cDj4LPTLR3o
-- [ ] add Delete look feature
+- [ ] Add Delete look feature
 - [ ] Find a better solution to check/refreshToken
 - [ ] First refactoring round:
   - [ ] in as many stateless component as possible
   - [ ] check state usage in already created component
   - [ ] Check class vs function component
 - [ ] Handle new account created
-  - [ ] Show success message in App
+  - [x] Show success message in App
+  - [x] Handle errors from backend
   - [ ] Send Email to new user
-  - [ ] handle errors from backend
+    - [ ] User should confirm email?
 - [ ] Recover password feature
-- [ ] Remember me feature
 
 ## Completed ✓
 
@@ -40,4 +40,8 @@ Rewaer Front End
   - [x] Show logout error
   - [x] Show successfull login
   - [x] Show successfull logout
-- [x] Loader when loading images of card component
+- [x] Looks: Show loading ot user
+  - [x] Spinner when fetching looks from API
+  - [x] Spinner when loading images of card component
+  - [x] Thumbnail images during loading of high res image
+- [x] Remember me feature

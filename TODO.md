@@ -11,7 +11,8 @@ Rewaer Front End
 - [ ] Add Delete look feature
 - [ ] Find a better solution to check/refreshToken
 - [ ] First refactoring round:
-  - [ ] in as many stateless component as possible
+  - [ ] Rewrite all fetch to use axios
+  - [ ] as many stateless component as possible
   - [ ] check state usage in already created component
   - [ ] Check class vs function component
 - [ ] Handle new account created

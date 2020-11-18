@@ -1,5 +1,6 @@
 import { Col, Row, Spin } from "antd";
 import React, { Component } from "react";
+import axios from 'axios';
 
 import LookCard from "./LookCard/LookCard";
 import LookForm from "./LookForm/LookForm";
@@ -17,7 +18,6 @@ class LooksPage extends Component {
 
   componentDidMount() {
     this.loadLooks();
-    this.state.isLoading = false;
   }
 
   loadLooks() {
@@ -36,9 +36,10 @@ class LooksPage extends Component {
     };
 
     async function fetchLooks(token) {
-      const response = await fetch(process.env.REACT_APP_API_URL, {
+      const response = await axios({
+        url: process.env.REACT_APP_API_URL,
         method: "POST",
-        body: JSON.stringify(requestBody),
+        data: requestBody,
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
@@ -47,13 +48,15 @@ class LooksPage extends Component {
       if ((response.status !== 200) & (response.status !== 201)) {
         throw new Error("Unauthenticated!");
       }
-      const looks = await response.json();
+      console.log(response.data)
+      const looks = await response.data;
       return looks;
     }
     // fetch Looks
     fetchLooks(this.context.token).then((resData) => {
       const looks = resData.data.looks;
       this.setState({ looks: looks });
+      this.setState({ isLoading: false });
     }
     ).catch(error => {
       console.log(error.message);

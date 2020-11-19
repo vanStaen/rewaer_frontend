@@ -163,7 +163,7 @@ class LoginForm extends Component {
           fetchUser(resData.token).then(resData => {
             const user = resData.data.user[0];
             localStorage.setItem('user', JSON.stringify(user));
-            const storedUser = JSON.parse(user);
+            const storedUser = user;
             if (process.env.NODE_ENV === "development") {
               console.log("[login] Save user object to Local Storage:", storedUser);
             }

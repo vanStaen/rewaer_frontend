@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { notification } from "antd";
+import jsonwebtoken from "jsonwebtoken";
 
 import AuthPage from "./pages/Auth";
 import LooksPage from "./pages/looks/Looks";
@@ -14,8 +15,6 @@ import AuthContext from "./context/auth-context";
 
 import "./App.css";
 
-const refreshToken = localStorage.getItem("refreshToken");
-
 const openNotification = (msg, desc, showtime, type) => {
   notification.open({
     message: msg,
@@ -25,6 +24,8 @@ const openNotification = (msg, desc, showtime, type) => {
     placement: "bottomRight",
   });
 };
+
+const refreshToken = localStorage.getItem("refreshToken");
 
 class App extends Component {
   state = {
@@ -72,6 +73,73 @@ class App extends Component {
         console.log(err);
       });
   };
+
+  getNewToken = () => {
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (process.env.NODE_ENV === "development") {
+      console.log("[script] Check access token");
+    }
+
+    // Check if refreshtoken is expired
+    if (refreshToken) {
+      let decodedRefreshToken = jsonwebtoken.decode(refreshToken, {
+        complete: true,
+      });
+      let dateNow = new Date();
+      if (decodedRefreshToken.exp < Math.floor(dateNow.getTime() / 1000)) {
+        console.log("[script] REFRESH TOKEN HAS EXPIRED!");
+        this.context.logout();
+      }
+    }
+
+    // Check if token is expired
+    if (this.state.token) {
+      let decodedToken = jsonwebtoken.decode(this.state.token, {
+        complete: true,
+      });
+      let dateNow = new Date();
+      if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
+        console.log("[script] TOKEN HAS EXPIRED!");
+        this.context.login(
+          null,
+          this.context.refreshToken
+        );
+      }
+    }
+
+    // Refresh token is token missing
+    if (!this.state.token) {
+      if (process.env.NODE_ENV === "development") {
+        console.log("[script] Fetching a new token");
+      }
+      let requestBody = { refreshToken: refreshToken };
+      fetch(process.env.REACT_APP_AUTH_URL + "/token", {
+        method: "POST",
+        body: JSON.stringify(requestBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          if (res.status !== 201) {
+            throw new Error("Error when refreshing the token!");
+          }
+          return res.json();
+        })
+        .then((resData) => {
+          localStorage.setItem("refreshToken", resData.refreshToken);
+          if (resData.token) {
+            this.login(
+              resData.token,
+              resData.refreshToken
+            );
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 
   dummyCall() {
 
@@ -131,6 +199,7 @@ class App extends Component {
                 refreshToken: this.state.refreshToken,
                 login: this.login,
                 logout: this.logout,
+                getNewToken: this.getNewToken,
               }}
             >
               <MenuBar />

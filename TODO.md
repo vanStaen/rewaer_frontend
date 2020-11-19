@@ -9,7 +9,6 @@ Rewaer Front End
   - [x] Handling request in Backend
   - [ ] Backend to AWS S3 https://www.youtube.com/watch?v=cDj4LPTLR3o
 - [ ] Add Delete look feature
-- [ ] Find a better solution to check/refreshToken
 - [ ] First refactoring round:
   - [x] Rewrite fetch to use axios if auth relevant
   - [ ] as many stateless component as possible
@@ -21,6 +20,7 @@ Rewaer Front End
   - [ ] Send Email to new user
     - [ ] User should confirm email?
 - [ ] Recover password feature
+- [ ] Use Axios interceptors if token not valid: https://github.com/axios/axios#interceptors
 
 ## Completed ✓
 
@@ -46,3 +46,4 @@ Rewaer Front End
   - [x] Spinner when loading images of card component
   - [x] Thumbnail images during loading of high res image
 - [x] Remember me feature
+- [x] getNewToken() as context function

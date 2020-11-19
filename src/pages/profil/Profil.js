@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import AuthContext from "../../context/auth-context";
-import CheckToken from "../../helpers/CheckToken"
-
 import { Typography } from "antd";
 const { Title, Paragraph } = Typography;
 
@@ -10,15 +8,17 @@ class ProfilPage extends Component {
 
   static contextType = AuthContext;
 
+  componentDidMount() {
+    this.context.getNewToken();
+  }
+
   render() {
 
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const userId = localStorage.getItem("userId");
 
-
     return (
       <div>
-        <CheckToken />
         <Title level={3}>Hello, {storedUser ? storedUser.name : 'there'}
         </Title>
         <Paragraph copyable>

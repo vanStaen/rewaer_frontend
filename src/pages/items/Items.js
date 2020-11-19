@@ -11,6 +11,10 @@ export default class ItemsPage extends React.Component {
 
   static contextType = AuthContext;
 
+  componentDidMount() {
+    this.context.getNewToken();
+  }
+
   fileSelectHandler = event => {
     this.setState({ file: event.target.files[0] });
     this.setState({ fileName: event.target.files[0].name });

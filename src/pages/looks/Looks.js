@@ -17,10 +17,12 @@ class LooksPage extends Component {
   static contextType = AuthContext;
 
   componentDidMount() {
+    this.context.getNewToken();
     this.loadLooks();
   }
 
   loadLooks() {
+
     const requestBody = {
       query: `
             query {
@@ -48,7 +50,6 @@ class LooksPage extends Component {
       if ((response.status !== 200) & (response.status !== 201)) {
         throw new Error("Unauthenticated!");
       }
-      console.log(response.data)
       const looks = await response.data;
       return looks;
     }

@@ -167,7 +167,9 @@ class LoginForm extends Component {
             if (process.env.NODE_ENV === "development") {
               console.log("[login] Save user object to Local Storage:", storedUser);
             }
-          })
+          }).catch(error => {
+            console.log(error.message);
+          });
         }
         ).catch(error => {
           console.log(error.message);

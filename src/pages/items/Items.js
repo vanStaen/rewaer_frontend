@@ -35,9 +35,8 @@ export default class ItemsPage extends React.Component {
       })
       this.state.uploadedFileName = res.data.imageName
       this.state.uploadedFileUrl = res.data.imageUrl
-      console.log("Success", this.state.uploadedFileUrl);
-      console.log('res', res);
-
+      // Debug: console.log("Success", this.state.uploadedFileUrl);
+      // TODO: Create Look/item Entry
     } catch (err) {
       console.log(err)
     }

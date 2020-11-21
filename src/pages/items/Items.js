@@ -7,6 +7,7 @@ export default class ItemsPage extends React.Component {
     file: null,
     fileName: null,
     uploadedFileName: null,
+    uploadedFileUrl: null,
   };
 
   static contextType = AuthContext;
@@ -32,8 +33,10 @@ export default class ItemsPage extends React.Component {
           Authorization: "Bearer " + this.context.token,
         }
       })
-      this.state.uploadedFileName = res.data.uploadedFileName
-      console.log("Success", this.state.uploadedFileName);
+      this.state.uploadedFileName = res.data.imageName
+      this.state.uploadedFileUrl = res.data.imageUrl
+      console.log("Success", this.state.uploadedFileUrl);
+      console.log('res', res);
 
     } catch (err) {
       console.log(err)

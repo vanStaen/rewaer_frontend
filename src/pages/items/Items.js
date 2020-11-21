@@ -33,7 +33,7 @@ export default class ItemsPage extends React.Component {
           Authorization: "Bearer " + this.context.token,
         }
       })
-      this.state.uploadedFileName = res.data.imageName
+      this.state.uploadedFileName = res.data.imageOriginalName
       this.state.uploadedFileUrl = res.data.imageUrl
       // Debug: console.log("Success", this.state.uploadedFileUrl);
       // TODO: Create Look/item Entry

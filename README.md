@@ -28,17 +28,13 @@ So far I have been using the context API to store information between component:
 
 Through this project I use a mix of both solution to fetch data from the backend. I will clean it inorder to user only axios, even though I haven't found a huge advantage at using Axios so far. Reading this (https://blog.logrocket.com/axios-or-fetch-api/) was instructive, but not really telling you where to fall.
 
+I implemented axios everytime I do a request with token, as I intend to use the interceptor in case of a invalid token, to get this token refreshed.
+
 #### Axios interceptors?
 
 I could use Axios to listen for 401 error (from graphql error message "Unauthenticated!"), and trigger a token refresh when needed: https://thedutchlab.com/blog/using-axios-interceptors-for-refreshing-your-api-token
 
 ## RESSOURCES
-
-### Tutorial I followed:
-
-- React File Uploader (with Axios) : https://www.youtube.com/watch?v=b6Oe2puTdMQ </br>
-- Overwrite AntD color scheme : https://medium.com/@okoriechinedusunday/a-baby-guide-to-overriding-antdesign-theme-and-color-aa6df1f85e0 </br>
-- Spinner on imnage load: https://www.javascriptstuff.com/detect-image-load/ </br>
 
 ### npm run eject
 

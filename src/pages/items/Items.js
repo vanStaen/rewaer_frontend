@@ -26,6 +26,24 @@ export default class ItemsPage extends React.Component {
     const file = event.target.fileInput.files[0];
     const formData = new FormData();
     formData.append('file', file);
+
+    async function postNewLook(token, requestBody) {
+      const response = await axios({
+        url: process.env.REACT_APP_API_URL,
+        method: "POST",
+        data: requestBody,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+      if ((response.status !== 200) & (response.status !== 201)) {
+        throw new Error("Unauthenticated!");
+      }
+      const newLook = await response.data;
+      return newLook;
+    }
+
     try {
       const res = await axios.post(process.env.REACT_APP_API_URL_UPLOAD, formData, {
         headers: {
@@ -35,8 +53,29 @@ export default class ItemsPage extends React.Component {
       })
       this.state.uploadedFileName = res.data.imageOriginalName
       this.state.uploadedFileUrl = res.data.imageUrl
-      // Debug: console.log("Success", this.state.uploadedFileUrl);
       // TODO: Create Look/item Entry
+      const mediaUrl = res.data.imageUrl
+      const title = res.data.imageOriginalName // or date?
+      const requestBody = {
+        query: `
+            mutation {
+                createLook(
+                  lookInput: { mediaUrl: "${mediaUrl}", title: "${title}" }
+                ) {
+                  _id
+                }
+              }
+              `
+      };
+      console.log('requestBody', requestBody)
+      // post new Look
+      postNewLook(this.context.token, requestBody).then((resData) => {
+        // Success!
+      }
+      ).catch(error => {
+        console.log(error.message);
+      });
+
     } catch (err) {
       console.log(err)
     }

@@ -67,9 +67,8 @@ class LooksPage extends Component {
 
   render() {
     const lookList = this.state.looks.map(look => {
-      const mediaUrl = look.mediaUrl.replace('.jpg', '');
       return (<Col key={look._id}>
-        <LookCard num={mediaUrl} title={"#" + mediaUrl} />
+        <LookCard url={look.mediaUrl} title={look.title} />
       </Col>);
     })
     return (

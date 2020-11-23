@@ -9,18 +9,10 @@ const { Meta } = Card;
 
 const LookCard = (props) => {
 
-  const picThumb =
-    "https://rewaer-backend.herokuapp.com/old/" + props.num + "_thumb.jpg";
-  const pic =
-    "https://rewaer-backend.herokuapp.com/old/" + props.num + ".jpg";
-  const title = props.title;
-
-
-
   const spinnerFormated = (
     <div className="card__spinner">
-        <Spin size="middle"/>
-      </div>
+      <Spin size="middle" />
+    </div>
   )
 
   return (
@@ -28,16 +20,16 @@ const LookCard = (props) => {
       hoverable
       bordered
       style={{ width: 240, marginBottom: 30, height: 385 }}
-      cover={    
-      <Image
-        alt={title}
-        src={pic}
-        placeholder={<Image src={picThumb} width={240} height={320} placeholder={spinnerFormated}/>}
-        width={240}
-        height={320}
-      />}
+      cover={
+        <Image
+          alt={props.title}
+          src={props.url}
+          placeholder={<Image src={props.url} width={240} height={320} placeholder={spinnerFormated} />}
+          width={240}
+          height={320}
+        />}
     >
-      <Meta title={title} />
+      <Meta title={props.title} />
     </Card>
   );
 };

@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import axios from "axios";
+import moment from 'moment';
 import AuthContext from "../../context/auth-context";
 
 export default class ItemsPage extends React.Component {
@@ -53,9 +54,9 @@ export default class ItemsPage extends React.Component {
       })
       this.state.uploadedFileName = res.data.imageOriginalName
       this.state.uploadedFileUrl = res.data.imageUrl
-      // TODO: Create Look/item Entry
+      // Create Look entry
       const mediaUrl = res.data.imageUrl
-      const title = res.data.imageOriginalName // or date?
+      const title = moment().format('DD.MM.YYYY');
       const requestBody = {
         query: `
             mutation {
@@ -67,10 +68,9 @@ export default class ItemsPage extends React.Component {
               }
               `
       };
-      console.log('requestBody', requestBody)
       // post new Look
       postNewLook(this.context.token, requestBody).then((resData) => {
-        // Success!
+        console.log('Success!');
       }
       ).catch(error => {
         console.log(error.message);

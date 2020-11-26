@@ -21,6 +21,9 @@ Rewaer Front End
     - [ ] User should confirm email?
 - [ ] Recover password feature
 - [ ] Use Axios interceptors if token not valid: https://github.com/axios/axios#interceptors
+- [ ] Notification if auth server is down
+- [ ] Use custom image grid for images
+- [ ] Create own Card component
 
 ## Completed ✓
 
@@ -32,7 +35,7 @@ Rewaer Front End
 - [x] Implement refresh Token
   - [x] Stop persisting token in local var
   - [x] Start persisting refreshtoken in local var
-  - [] Kill refresh token on logout
+  - [x] Kill refresh token on logout
   - [x] Handle when token not valid anymore
 - [x] Check and handle validity of refresh token
 - [x] Handle errors from backend (and display those)

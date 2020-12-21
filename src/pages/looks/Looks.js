@@ -16,13 +16,12 @@ class LooksPage extends Component {
   }
   static contextType = AuthContext;
 
-  componentDidMount() {
+  async componentDidMount() {
     this.context.getNewToken();
     this.loadLooks();
   }
 
   loadLooks() {
-
     const requestBody = {
       query: `
             query {

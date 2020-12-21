@@ -29,6 +29,7 @@ export default class ItemsPage extends React.Component {
     formData.append('file', file);
 
     async function postNewLook(token, requestBody) {
+
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
@@ -56,12 +57,15 @@ export default class ItemsPage extends React.Component {
       this.state.uploadedFileUrl = res.data.imageUrl
       // Create Look entry
       const mediaUrl = res.data.imageUrl
+      const mediaUrlThumb = res.data.thumbUrl
       const title = moment().format('DD.MM.YYYY');
       const requestBody = {
         query: `
             mutation {
                 createLook(
-                  lookInput: { mediaUrl: "${mediaUrl}", title: "${title}" }
+                  lookInput: { mediaUrl: "${mediaUrl}", 
+                               mediaUrlThumb: "${mediaUrlThumb}",
+                               title: "${title}" }
                 ) {
                   _id
                 }

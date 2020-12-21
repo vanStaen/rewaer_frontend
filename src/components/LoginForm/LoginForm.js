@@ -60,7 +60,6 @@ class LoginForm extends Component {
         });
         if ((response.status !== 200) & (response.status !== 201)) {
           const error = await response.json();
-          console.log(error);
           openNotification(error.errors[0].message, "", 3, "warning")
           const message = `An error has occured: ${response.status} - ${error.errors[0].message}`;
           throw new Error(message);
@@ -142,6 +141,7 @@ class LoginForm extends Component {
       } else {
         // login
         fetchLogin().then((resData) => {
+          console.log("[login] FetchLogin ended!");
           this.context.login(resData.token, resData.refreshToken);
           if (remember === true) {
             if (process.env.NODE_ENV === "development") {

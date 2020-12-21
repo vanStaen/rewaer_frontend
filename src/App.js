@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { notification } from "antd";
 import jsonwebtoken from "jsonwebtoken";
 
-import AuthPage from "./pages/Auth";
+import AuthPage from "./pages/Auth/Auth";
 import LooksPage from "./pages/looks/Looks";
 import ItemsPage from "./pages/items/Items";
 import MailPage from "./pages/mail/Mail";

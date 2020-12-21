@@ -15,6 +15,10 @@ const LookCard = (props) => {
     </div>
   )
 
+  const handleDelete = () => {
+    console.log(props.look._id);
+  }
+
   return (
     <Card
       hoverable
@@ -22,14 +26,19 @@ const LookCard = (props) => {
       style={{ width: 240, marginBottom: 30, height: 385 }}
       cover={
         <Image
-          alt={props.title}
-          src={props.url}
-          placeholder={<Image src={props.url} width={240} height={320} placeholder={spinnerFormated} />}
+          alt={props.look.title}
+          src={props.look.mediaUrl}
+          placeholder={<Image src={props.look.url} width={240} height={320} placeholder={spinnerFormated} />}
           width={240}
           height={320}
         />}
     >
-      <Meta title={props.title} />
+      <Meta title={
+        <div>
+          {props.look.title}
+          <span onClick={handleDelete}>delete</span>
+        </div>
+      } />
     </Card>
   );
 };

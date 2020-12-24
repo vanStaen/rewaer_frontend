@@ -111,7 +111,7 @@ class App extends Component {
       }
     }
 
-    // Refresh token is token missing
+    // Refresh token if token missing
     if (!this.state.token) {
       if (process.env.NODE_ENV === "development") {
         console.log("[script] Fetching a new token");

@@ -13,7 +13,6 @@ class LooksPage extends Component {
   state = {
     looks: [],
     isLoading: true,
-    isError: false,
   }
   static contextType = AuthContext;
 
@@ -57,12 +56,10 @@ class LooksPage extends Component {
     fetchLooks(this.context.token).then((resData) => {
       const looks = resData.data.looks;
       this.setState({ looks: looks });
-      this.setState({ isError: false });
       this.setState({ isLoading: false });
     }
     ).catch(error => {
-      this.setState({ isLoading: false });
-      this.setState({ isError: true });
+      this.loadLooks();
       console.log(error.message);
     });
   };
@@ -76,13 +73,10 @@ class LooksPage extends Component {
     })
     return (
       <div>
-        { this.state.isLoading ?
-          <div className="looks__spinner">
-            <Spin size="large" />
-          </div>
-          : this.state.isError ?
+        {
+          this.state.isLoading ?
             <div className="looks__spinner">
-              ERROR!
+              <Spin size="large" />
             </div>
             :
             (<Row justify={"space-around"}>
@@ -92,7 +86,6 @@ class LooksPage extends Component {
               {lookList}
             </Row>)
         }
-
       </div>
     );
   }

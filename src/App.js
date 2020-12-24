@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { notification } from "antd";
 import jsonwebtoken from "jsonwebtoken";
+import axios from 'axios';
 
 import AuthPage from "./pages/Auth/Auth";
 import LooksPage from "./pages/looks/Looks";
@@ -14,6 +15,8 @@ import MenuBar from "./components/MenuBar";
 import AuthContext from "./context/auth-context";
 
 import "./App.css";
+
+const DEBUG = process.env.NODE_ENV === "development";
 
 const openNotification = (msg, desc, showtime, type) => {
   notification.open({
@@ -32,6 +35,7 @@ class App extends Component {
     token: null,
     refreshToken: refreshToken || null,
   };
+
 
   login = (token, refreshToken) => {
     this.setState({ token: token, refreshToken: refreshToken });
@@ -179,6 +183,19 @@ class App extends Component {
   componentDidMount() {
 
     this.dummyCall();
+
+    // Axios Interceptors
+    axios.interceptors.request.use((config) => {
+      if (DEBUG) {
+        console.log(">>> INTERCEPTOR INTERCEPTED <<<")
+        //console.info("✉️ ", config);
+      }
+      this.getNewToken();
+      return Promise.resolve(config);
+    }, (error) => {
+      if (DEBUG) { console.error("✉️ ", error); }
+      return Promise.reject(error);
+    });
 
     //show tokens
     if (process.env.NODE_ENV === "development") {

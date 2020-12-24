@@ -9,7 +9,7 @@ class ProfilPage extends Component {
   static contextType = AuthContext;
 
   componentDidMount() {
-    this.context.getNewToken();
+    //this.context.getNewToken();
   }
 
   render() {

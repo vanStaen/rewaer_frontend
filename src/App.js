@@ -4,7 +4,7 @@ import { notification } from "antd";
 import jsonwebtoken from "jsonwebtoken";
 import axios from 'axios';
 
-import AuthPage from "./pages/Auth/Auth";
+import AuthPage from "./pages/auth/Auth";
 import LooksPage from "./pages/looks/Looks";
 import ItemsPage from "./pages/items/Items";
 import MailPage from "./pages/mail/Mail";

@@ -1,5 +1,5 @@
 import { Col, Row, Spin } from "antd";
-import React, { Component } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 
 import LookCard from "./LookCard/LookCard";
@@ -8,20 +8,20 @@ import AuthContext from "../../context/auth-context";
 
 import "./Looks.css";
 
-class LooksPage extends Component {
 
-  state = {
-    looks: [],
-    isLoading: true,
-  }
-  static contextType = AuthContext;
+const LooksPage = () => {
 
-  async componentDidMount() {
-    //this.context.getNewToken();
-    this.loadLooks();
-  }
+  const [looks, setLooks] = useState([]);
+  const [isOutOfDate, setIsOutOfDate] = useState([false]);
+  const [isLoading, setIsLoading] = useState([true]);
 
-  loadLooks() {
+  const context = useContext(AuthContext);
+
+  useEffect(() => {
+    loadLooks();
+  }, [isOutOfDate])
+
+  const loadLooks = () => {
     const requestBody = {
       query: `
             query {
@@ -53,41 +53,44 @@ class LooksPage extends Component {
       return looks;
     }
     // fetch Looks
-    fetchLooks(this.context.token).then((resData) => {
+    fetchLooks(context.token).then((resData) => {
       const looks = resData.data.looks;
-      this.setState({ looks: looks });
-      this.setState({ isLoading: false });
+      setLooks(looks);
+      setIsLoading(false);
+      setIsOutOfDate(false);
     }
     ).catch(error => {
       console.log(error.message);
     });
   };
 
+  const lookList = looks.map(look => {
+    return (<Col key={look._id}>
+      <LookCard look={look} />
+    </Col>);
+  })
 
-  render() {
-    const lookList = this.state.looks.map(look => {
-      return (<Col key={look._id}>
-        <LookCard look={look} />
-      </Col>);
-    })
-    return (
-      <div>
-        {
-          this.state.isLoading ?
-            <div className="looks__spinner">
-              <Spin size="large" />
-            </div>
-            :
-            (<Row justify={"space-around"}>
-              <Col>
-                <LookForm />
-              </Col>
-              {lookList}
-            </Row>)
-        }
-      </div>
-    );
-  }
+  return (
+    <div>
+      {
+        isLoading ?
+          <div className="looks__spinner">
+            <Spin size="large" />
+          </div>
+          :
+          (<Row justify={"space-around"}>
+            <Col>
+              <LookForm
+                token={context.token}
+                setIsOutOfDate={setIsOutOfDate}
+              />
+            </Col>
+            {lookList}
+          </Row>)
+      }
+    </div>
+  );
 }
+
 
 export default LooksPage;

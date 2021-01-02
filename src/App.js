@@ -187,7 +187,7 @@ class App extends Component {
     // Axios Interceptors
     axios.interceptors.request.use((config) => {
       if (DEBUG) {
-        console.log(">>> INTERCEPTOR INTERCEPTED <<<")
+        console.log("[Axios Interceptor]")
         //console.info("✉️ ", config);
       }
       this.getNewToken();

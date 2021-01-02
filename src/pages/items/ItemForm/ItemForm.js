@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { message } from 'antd';
 import axios from "axios";
 import moment from 'moment';
 
@@ -28,6 +29,7 @@ const ItemForm = (props) => {
         },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
+        message.error(`Unauthenticated!`);
         throw new Error("Unauthenticated!");
       }
       const newLook = await response.data;
@@ -41,15 +43,15 @@ const ItemForm = (props) => {
           Authorization: "Bearer " + props.token,
         }
       })
-      // Create Look entry
+      // Create Item entry
       const mediaUrl = res.data.imageUrl
       const mediaUrlThumb = res.data.thumbUrl
       const title = moment().format('DD.MM.YYYY');
       const requestBody = {
         query: `
             mutation {
-                createLook(
-                  lookInput: { mediaUrl: "${mediaUrl}", 
+                createItem(
+                  itemInput: { mediaUrl: "${mediaUrl}", 
                                mediaUrlThumb: "${mediaUrlThumb}",
                                title: "${title}" }
                 ) {
@@ -59,16 +61,21 @@ const ItemForm = (props) => {
               `
       };
       console.log("requestBody", requestBody);
-      // post new Look
+      // post new Item
       postNewLook(props.token, requestBody)
         .then(() => {
+          message.success(`File uploaded successfully.`);
+          // retrigger parent component rendering
+          props.setIsOutOfDate(true);
           console.log('Success!');
         }
         ).catch(error => {
+          message.error(`File upload failed.`);
           console.log(error.message);
         });
 
     } catch (err) {
+      message.error(`File upload failed.`);
       console.log(err)
     }
   }

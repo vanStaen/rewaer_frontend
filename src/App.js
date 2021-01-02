@@ -11,7 +11,7 @@ import MailPage from "./pages/mail/Mail";
 import FriendsPage from "./pages/friends/Friends";
 import InfoPage from "./pages/info/Info";
 import ProfilPage from "./pages/profil/Profil";
-import MenuBar from "./components/MenuBar";
+import MenuBar from "./components/MenuBar/MenuBar";
 import AuthContext from "./context/auth-context";
 
 import "./App.css";

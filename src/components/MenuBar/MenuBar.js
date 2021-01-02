@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthContext from "../context/auth-context";
+import AuthContext from "../../context/auth-context";
 import { NavLink } from "react-router-dom";
 import { Menu, Avatar, Badge } from "antd";
 import {
@@ -11,6 +11,8 @@ import {
   QuestionOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+
+import "./MenuBar.css";
 
 const { SubMenu } = Menu;
 
@@ -40,6 +42,7 @@ class MenuBar extends Component {
         style={{ margin: "5px 0px" }}
       >
         <span
+          className="menu__RewaerMotto"
           style={{
             color: "#6C917D",
             float: "left",

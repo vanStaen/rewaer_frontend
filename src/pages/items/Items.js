@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
 import axios from "axios";
 import moment from 'moment';
+
+import { SkinOutlined } from '@ant-design/icons';
 import AuthContext from "../../context/auth-context";
+
+import "./input.css";
 
 export default class ItemsPage extends React.Component {
   state = {
-    file: null,
-    fileName: null,
     uploadedFileName: null,
     uploadedFileUrl: null,
   };
@@ -17,14 +19,9 @@ export default class ItemsPage extends React.Component {
     //this.context.getNewToken();
   }
 
-  fileSelectHandler = event => {
-    this.setState({ file: event.target.files[0] });
-    this.setState({ fileName: event.target.files[0].name });
-  }
-
   submitHandler = async event => {
     event.preventDefault();
-    const file = event.target.fileInput.files[0];
+    const file = event.target.inputfile.files[0];
     const formData = new FormData();
     formData.append('file', file);
 
@@ -72,6 +69,7 @@ export default class ItemsPage extends React.Component {
               }
               `
       };
+      console.log("requestBody", requestBody);
       // post new Look
       postNewLook(this.context.token, requestBody).then((resData) => {
         console.log('Success!');
@@ -90,7 +88,22 @@ export default class ItemsPage extends React.Component {
     return (
       <Fragment>
         <form onSubmit={this.submitHandler}>
-          <input type="file" id="file" name="fileInput" onChange={this.fileSelectHandler} />
+          <input
+            type="file"
+            class="inputfile"
+            name="inputfile"
+            id="file"
+            onChange={console.log("file selected!")} />
+          <label for="file">
+            <p className="form-upload-drag-icon">
+              <SkinOutlined />
+            </p>
+            <p className="form-upload-text">Add Item</p>
+            <p className="form-upload-hint">
+              Start with a photo <br />
+              Click, or drag here a file
+            </p>
+          </label>
           <input type="submit" />
         </form>
       </Fragment >

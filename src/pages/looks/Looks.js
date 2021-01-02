@@ -59,7 +59,6 @@ class LooksPage extends Component {
       this.setState({ isLoading: false });
     }
     ).catch(error => {
-      this.loadLooks();
       console.log(error.message);
     });
   };

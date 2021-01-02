@@ -11,8 +11,8 @@ import "./Items.css";
 const ItemsPage = () => {
 
   const [items, setItems] = useState([]);
-  const [isOutOfDate, setIsOutOfDate] = useState([false]);
-  const [isLoading, setIsLoading] = useState([true]);
+  const [isOutOfDate, setIsOutOfDate] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const context = useContext(AuthContext);
 

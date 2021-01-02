@@ -1,6 +1,6 @@
-import { Col, Row, Spin } from "antd";
 import React, { useState, useEffect, useContext } from "react";
 import axios from 'axios';
+import { Col, Row, Spin } from "antd";
 
 import LookCard from "./LookCard/LookCard";
 import LookForm from "./LookForm/LookForm";
@@ -12,8 +12,8 @@ import "./Looks.css";
 const LooksPage = () => {
 
   const [looks, setLooks] = useState([]);
-  const [isOutOfDate, setIsOutOfDate] = useState([false]);
-  const [isLoading, setIsLoading] = useState([true]);
+  const [isOutOfDate, setIsOutOfDate] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const context = useContext(AuthContext);
 

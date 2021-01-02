@@ -1,14 +1,19 @@
-import React, { Fragment } from "react";
-import { message } from 'antd';
-import { CameraOutlined } from '@ant-design/icons';
+import React, { Fragment, useState } from "react";
+import { notification, Spin } from 'antd';
+
 import axios from "axios";
 import moment from 'moment';
+
+import { CameraOutlined } from '@ant-design/icons';
+
 
 import "./LookForm.css";
 
 const LookForm = (props) => {
+  const [isUploading, setIsUploading] = useState(false);
 
   const fileSelectHandler = async (event) => {
+    setIsUploading(true);
     submitHandler(event.target.files[0]);
   }
 
@@ -28,7 +33,7 @@ const LookForm = (props) => {
         },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
-        message.error(`Unauthenticated!`);
+        notification.error({ message: `Unauthenticated!`, placement: "bottomRight", });
         throw new Error("Unauthenticated!");
       }
       const newLook = await response.data;
@@ -63,18 +68,19 @@ const LookForm = (props) => {
       // post new Look
       postNewLook(props.token, requestBody)
         .then(() => {
-          message.success(`File uploaded successfully.`);
+          notification.success({ message: `File uploaded successfully.`, placement: "bottomRight", });
           // retrigger parent component rendering
           props.setIsOutOfDate(true);
           console.log('Success!');
         }
         ).catch(error => {
-          message.error(`File upload failed.`);
+          notification.error({ message: `File upload failed.`, placement: "bottomRight", });
           console.log(error.message);
         });
-
+      setIsUploading(false);
     } catch (err) {
-      message.error(`File upload failed.`);
+      notification.error({ message: `File upload failed.`, placement: "bottomRight", });
+      setIsUploading(false);
       console.log(err)
     }
   }
@@ -89,16 +95,20 @@ const LookForm = (props) => {
           id="file"
           onChange={fileSelectHandler}
         />
-        <label for="file">
-          <p className="form-upload-drag-icon">
-            <CameraOutlined />
-          </p>
-          <p className="form-upload-text">Create Look</p>
-          <p className="form-upload-hint">
-            Start with a photo <br />
+        {isUploading ?
+          (<label for="file">
+            <Spin size="large" />
+          </label>) :
+          (<label for="file">
+            <p className="form-upload-drag-icon">
+              <CameraOutlined />
+            </p>
+            <p className="form-upload-text">Create Look</p>
+            <p className="form-upload-hint">
+              Start with a photo <br />
           Click, or drag here a file
         </p>
-        </label>
+          </label>)}
       </form>
     </Fragment >
   );

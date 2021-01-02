@@ -16,12 +16,14 @@ export default class ItemsPage extends React.Component {
   static contextType = AuthContext;
 
   componentDidMount() {
-    //this.context.getNewToken();
+    this.context.getNewToken();
   }
 
-  submitHandler = async event => {
-    event.preventDefault();
-    const file = event.target.inputfile.files[0];
+  fileSelectHandler = async (event) => {
+    this.submitHandler(event.target.files[0]);
+  }
+
+  submitHandler = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
 
@@ -93,7 +95,8 @@ export default class ItemsPage extends React.Component {
             class="inputfile"
             name="inputfile"
             id="file"
-            onChange={console.log("file selected!")} />
+            onChange={this.fileSelectHandler}
+          />
           <label for="file">
             <p className="form-upload-drag-icon">
               <SkinOutlined />
@@ -104,7 +107,6 @@ export default class ItemsPage extends React.Component {
               Click, or drag here a file
             </p>
           </label>
-          <input type="submit" />
         </form>
       </Fragment >
     )

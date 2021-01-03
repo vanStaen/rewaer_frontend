@@ -66,7 +66,11 @@ const LooksPage = () => {
 
   const lookList = looks.map(look => {
     return (<Col key={look._id}>
-      <LookCard look={look} />
+      <LookCard
+        look={look}
+        token={context.token}
+        setIsOutOfDate={setIsOutOfDate}
+      />
     </Col>);
   })
 

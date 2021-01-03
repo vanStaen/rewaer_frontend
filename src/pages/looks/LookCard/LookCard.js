@@ -1,7 +1,6 @@
 import React from "react";
-import { Image, Card } from "antd";
-import { Spin } from 'antd';
-
+import { Image, Card, notification, Spin } from "antd";
+import axios from "axios";
 
 import "./LookCard.css";
 
@@ -16,7 +15,44 @@ const LookCard = (props) => {
   )
 
   const handleDelete = () => {
-    console.log(props.look._id);
+    const deleteLook = async (token, requestBody) => {
+      const response = await axios({
+        url: process.env.REACT_APP_API_URL,
+        method: "POST",
+        data: requestBody,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      });
+      if ((response.status !== 200) & (response.status !== 201)) {
+        notification.error({ message: `Unauthenticated!`, placement: "bottomRight", });
+        throw new Error("Unauthenticated!");
+      }
+      return "Success";
+    }
+    const requestBody = {
+      query: `
+          mutation {
+              deleteLook(lookId: "${props.look._id}") {
+                _id
+              }
+            }
+            `
+    };
+    console.log("requestBody", requestBody);
+    // delete Look
+    deleteLook(props.token, requestBody)
+      .then(() => {
+        notification.success({ message: `Look deleted successfully.`, placement: "bottomRight", });
+        // retrigger parent component rendering
+        props.setIsOutOfDate(true);
+        console.log('Success!');
+      }
+      ).catch(error => {
+        notification.error({ message: `Error!`, placement: "bottomRight", });
+        console.log(error.message);
+      });
   }
 
   return (
@@ -36,6 +72,7 @@ const LookCard = (props) => {
       <Meta title={
         <div>
           {props.look.title}
+          &nbsp;&nbsp;&nbsp;
           <span onClick={handleDelete}>delete</span>
         </div>
       } />

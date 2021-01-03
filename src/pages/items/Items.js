@@ -67,7 +67,11 @@ const ItemsPage = () => {
 
   const itemList = items.map(item => {
     return (<Col key={item._id}>
-      <ItemCard item={item} />
+      <ItemCard
+        item={item}
+        token={context.token}
+        setIsOutOfDate={setIsOutOfDate}
+      />
     </Col>);
   })
 

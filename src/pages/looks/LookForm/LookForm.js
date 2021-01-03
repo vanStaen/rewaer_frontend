@@ -87,7 +87,10 @@ const LookForm = (props) => {
 
   return (
     <Fragment>
-      <form onSubmit={submitHandler}>
+      <form
+        onSubmit={submitHandler}
+        style={{ marginBottom: "30px" }}
+      >
         <input
           type="file"
           class="inputfile"

@@ -47,6 +47,7 @@ const LookForm = (props) => {
           Authorization: "Bearer " + props.token,
         }
       })
+      console.log(res)
       // Create Look entry
       const mediaUrl = res.data.imageUrl
       const mediaUrlThumb = res.data.thumbUrl

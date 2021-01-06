@@ -28,11 +28,9 @@ So far I have been using the context API to store information between component:
 
 Through this project I use a mix of both solution to fetch data from the backend. I will clean it inorder to user only axios, even though I haven't found a huge advantage at using Axios so far. Reading this (https://blog.logrocket.com/axios-or-fetch-api/) was instructive, but not really telling you where to fall.
 
-I implemented axios everytime I do a request with token, as I intend to use the interceptor in case of a invalid token, to get this token refreshed.
-
 #### Axios interceptors?
 
-I could use Axios to listen for 401 error (from graphql error message "Unauthenticated!"), and trigger a token refresh when needed: https://thedutchlab.com/blog/using-axios-interceptors-for-refreshing-your-api-token
+Axios is used everytime a request is made with a token : The interceptor feature of axios is used in case of a invalid token, to get this token refreshed. More info on this there: https://github.com/axios/axios#interceptors / https://thedutchlab.com/blog/using-axios-interceptors-for-refreshing-your-api-token.
 
 ## RESSOURCES
 

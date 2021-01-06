@@ -4,23 +4,23 @@ Rewaer Front End
 
 ## To-dos:
 
+- [ ] On loading error, show error, instead of spinner
+- [ ] On RefreshToken not foudnin db > logout
 - [ ] Upload Images
   - [x] Front end to Rest API
   - [x] Handling request in Backend
   - [ ] Backend to AWS S3 https://www.youtube.com/watch?v=cDj4LPTLR3o
-- [ ] Add Delete look feature
 - [ ] First refactoring round:
   - [x] Rewrite fetch to use axios if auth relevant
-  - [ ] as many stateless component as possible
+  - [x] as many stateless component as possible
   - [ ] check state usage in already created component
-  - [ ] Check class vs function component
+  - [x] Check class vs function component
 - [ ] Handle new account created
   - [x] Show success message in App
   - [x] Handle errors from backend
   - [ ] Send Email to new user
     - [ ] User should confirm email?
 - [ ] Recover password feature
-- [ ] Use Axios interceptors if token not valid: https://github.com/axios/axios#interceptors
 - [ ] Notification if auth server is down
 - [ ] Use custom image grid for images
 - [ ] Create own Card component
@@ -50,3 +50,5 @@ Rewaer Front End
   - [x] Thumbnail images during loading of high res image
 - [x] Remember me feature
 - [x] getNewToken() as context function
+- [x] Add Delete look/item feature
+- [x] Use Axios interceptors if token not valid

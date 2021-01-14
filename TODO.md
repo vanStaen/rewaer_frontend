@@ -1,6 +1,4 @@
-# PythonBot
-
-Rewaer Front End
+# Rewaer, FrontEnd
 
 ## To-dos:
 

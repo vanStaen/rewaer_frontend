@@ -79,7 +79,14 @@ const ItemCard = (props) => {
         <Image
           alt={props.item.title}
           src={props.item.mediaUrl}
-          placeholder={<Image src={props.item.url} width={240} height={320} placeholder={spinnerFormated} />}
+          placeholder={
+            <Image 
+              src={props.item.mediaUrlThumb} 
+              width={240} 
+              height={320} 
+              placeholder={spinnerFormated} 
+            />
+          }
           width={240}
           height={320}
         />}

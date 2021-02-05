@@ -10,7 +10,7 @@
   - [x] as many stateless component as possible
   - [ ] check state usage in already created component
   - [x] Check class vs function component
-  - [ ] Take API communication fetch, out from component
+  - [ ] Take API-fetch-code, out from component
 - [ ] Handle new account created
   - [x] Show success message in App
   - [x] Handle errors from backend

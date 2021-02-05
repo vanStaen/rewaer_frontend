@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, Card, notification, Spin } from "antd";
+import { Image, Card, notification, Spin, Popconfirm } from "antd";
+import { DeleteOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 import "./LookCard.css";
@@ -94,7 +95,15 @@ const LookCard = (props) => {
         <div>
           {props.look.title}
           &nbsp;&nbsp;&nbsp;
-          <span onClick={handleDelete}>delete</span>
+          <Popconfirm
+            title="Are you sure to delete this look?"
+            onConfirm={handleDelete}
+            okText="Delete"
+            cancelText="Cancel"
+            icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
+          >
+          <DeleteOutlined/>
+          </Popconfirm>
         </div>
       } />
     </Card>

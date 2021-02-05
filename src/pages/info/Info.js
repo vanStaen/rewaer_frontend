@@ -94,10 +94,9 @@ class InfoPage extends Component {
 
         <Divider />
         <Paragraph disabled>
-          App running on {process.env.NODE_ENV} env.
+          App running in {process.env.NODE_ENV} mode.
           <br />
-          Backend in use: {process.env.REACT_APP_API_URL}.<br />
-          ©2020 Rewær All Rights Reserved
+          ©2021 Rewær All Rights Reserved
         </Paragraph>
       </div>
     );

@@ -22,7 +22,22 @@ const ItemCard = (props) => {
       if ((response.status !== 200) & (response.status !== 201)) {
         notification.error({ message: `Unauthenticated!`, placement: "bottomRight", });
         throw new Error("Unauthenticated!");
+      } else {
+        const s3ObjectID = props.item.mediaUrl.split("/").slice(-1)[0];
+        const responseDeleteS3 = await axios({
+          url: process.env.REACT_APP_API_URL_UPLOAD + '/' + s3ObjectID,
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+        if (responseDeleteS3.status !== 204) {
+          notification.error({ message: `Error when deleting object ${s3ObjectID} from S3 bucket.`, placement: "bottomRight", });
+          throw new Error(`Error when deleting object ${s3ObjectID} from S3 bucket.`);
+        }
       }
+
       return "Success";
     }
     const requestBody = {

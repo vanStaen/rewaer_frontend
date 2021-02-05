@@ -3,16 +3,14 @@
 ## To-dos:
 
 - [ ] On loading error, show error, instead of spinner
-- [ ] On RefreshToken not foudnin db > logout
-- [ ] Upload Images
-  - [x] Front end to Rest API
-  - [x] Handling request in Backend
-  - [ ] Backend to AWS S3 https://www.youtube.com/watch?v=cDj4LPTLR3o
+- [ ] On RefreshToken not found in db > logout
+
 - [ ] First refactoring round:
   - [x] Rewrite fetch to use axios if auth relevant
   - [x] as many stateless component as possible
   - [ ] check state usage in already created component
   - [x] Check class vs function component
+  - [ ] Take API communication fetch, out from component
 - [ ] Handle new account created
   - [x] Show success message in App
   - [x] Handle errors from backend
@@ -20,7 +18,7 @@
     - [ ] User should confirm email?
 - [ ] Recover password feature
 - [ ] Notification if auth server is down
-- [ ] Use custom image grid for images
+- [ ] Use custom image component for images
 - [ ] Create own Card component
 
 ## Completed ✓
@@ -40,13 +38,18 @@
   - [x] Show login error: email not known
   - [x] Show login error: wrong password
   - [x] Show logout error
-  - [x] Show successfull login
-  - [x] Show successfull logout
+  - [x] Show successful login
+  - [x] Show successful logout
 - [x] Looks: Show loading ot user
   - [x] Spinner when fetching looks from API
   - [x] Spinner when loading images of card component
-  - [x] Thumbnail images during loading of high res image
+  - [x] Thumbnail images during loading
 - [x] Remember me feature
 - [x] getNewToken() as context function
 - [x] Add Delete look/item feature
 - [x] Use Axios interceptors if token not valid
+- - [x] Upload Images
+  - [x] Front end to Rest API
+  - [x] Handling request in Backend
+  - [x] Backend to AWS S3
+  - [x] Create Thumbnail on upload

@@ -79,14 +79,7 @@ const LookCard = (props) => {
         <Image
           alt={props.look.title}
           src={props.look.mediaUrl}
-          placeholder={
-            <Image 
-              src={props.look.mediaUrlThumb} 
-              width={240} 
-              height={320} 
-              placeholder={spinnerFormated} 
-              />
-          }
+          placeholder={spinnerFormated} 
           width={240}
           height={320}
         />}

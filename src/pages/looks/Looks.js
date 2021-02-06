@@ -31,6 +31,7 @@ const LooksPage = () => {
                   active
                   favorite
                   mediaUrl
+                  mediaUrlThumb
                 }
               }
               `,

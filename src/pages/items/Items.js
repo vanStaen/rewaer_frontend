@@ -32,6 +32,7 @@ const ItemsPage = () => {
                   favorite
                   dateCreated
                   mediaUrl
+                  mediaUrlThumb
                 }
               }
               `,

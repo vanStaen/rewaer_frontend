@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
 import { Col, Row, Spin } from "antd";
 
@@ -80,9 +81,7 @@ const ItemsPage = () => {
   return (
     <div>
       { error !== null ?
-          <div className="looks__spinner">
-            error message: {error}
-          </div>
+          <Redirect from="/looks" to="/auth" exact />
         :
         isLoading ?
           <div className="looks__spinner">

@@ -104,10 +104,7 @@ class App extends Component {
       let dateNow = new Date();
       if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
         console.log("[script] TOKEN HAS EXPIRED!");
-        this.context.login(
-          null,
-          this.context.refreshToken
-        );
+        this.state.token = null;
       }
     }
 
@@ -126,6 +123,7 @@ class App extends Component {
       })
         .then((res) => {
           if (res.status !== 201) {
+            this.context.logout();
             throw new Error("Error when refreshing the token!");
           }
           return res.json();

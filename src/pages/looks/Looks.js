@@ -14,6 +14,7 @@ const LooksPage = () => {
   const [looks, setLooks] = useState([]);
   const [isOutOfDate, setIsOutOfDate] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const context = useContext(AuthContext);
 
@@ -30,7 +31,6 @@ const LooksPage = () => {
                   title
                   active
                   favorite
-                  mediaUrl
                   mediaUrlThumb
                 }
               }
@@ -62,6 +62,7 @@ const LooksPage = () => {
     }
     ).catch(error => {
       console.log(error.message);
+      setError(error.message);
     });
   };
 
@@ -77,7 +78,11 @@ const LooksPage = () => {
 
   return (
     <div>
-      {
+      { error !== null ?
+          <div className="looks__spinner">
+            error message: {error}
+          </div>
+        :
         isLoading ?
           <div className="looks__spinner">
             <Spin size="large" />

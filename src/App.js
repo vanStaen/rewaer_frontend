@@ -138,6 +138,7 @@ class App extends Component {
           }
         })
         .catch((err) => {
+          this.context.logout();
           console.log(err);
         });
     }

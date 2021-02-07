@@ -47,7 +47,6 @@ const LookForm = (props) => {
           Authorization: "Bearer " + props.token,
         }
       })
-      console.log(res)
       // Create Look entry
       const mediaUrl = res.data.imageUrl
       const mediaUrlThumb = res.data.thumbUrl
@@ -65,7 +64,6 @@ const LookForm = (props) => {
               }
               `
       };
-      console.log("requestBody", requestBody);
       // post new Look
       postNewLook(props.token, requestBody)
         .then(() => {

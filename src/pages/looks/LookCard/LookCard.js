@@ -78,8 +78,8 @@ const LookCard = (props) => {
       cover={
         <Image
           alt={props.look.title}
-          src={props.look.mediaUrl}
-          placeholder={spinnerFormated} 
+          src={props.look.mediaUrlThumb}
+          placeholder={spinnerFormated}
           width={240}
           height={320}
         />}
@@ -95,7 +95,7 @@ const LookCard = (props) => {
             cancelText="Cancel"
             icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
           >
-          <DeleteOutlined/>
+            <DeleteOutlined />
           </Popconfirm>
         </div>
       } />

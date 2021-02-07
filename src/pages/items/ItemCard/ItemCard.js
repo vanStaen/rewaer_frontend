@@ -79,8 +79,8 @@ const ItemCard = (props) => {
       cover={
         <Image
           alt={props.item.title}
-          src={props.item.mediaUrl}
-          placeholder={spinnerFormated} 
+          src={props.item.mediaUrlThumb}
+          placeholder={spinnerFormated}
           width={240}
           height={320}
         />}
@@ -96,7 +96,7 @@ const ItemCard = (props) => {
             cancelText="Cancel"
             icon={<QuestionCircleOutlined style={{ color: 'red' }} />}
           >
-          <DeleteOutlined/>
+            <DeleteOutlined />
           </Popconfirm>
         </div>
       } />

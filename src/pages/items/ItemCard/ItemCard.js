@@ -10,7 +10,7 @@ const { Meta } = Card;
 const ItemCard = (props) => {
 
   const handleDelete = () => {
-    const deleteLook = async (token, requestBody) => {
+    const deleteItem = async (token, requestBody) => {
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
@@ -36,9 +36,9 @@ const ItemCard = (props) => {
     };
     console.log("requestBody", requestBody);
     // delete Look
-    deleteLook(props.token, requestBody)
+    deleteItem(props.token, requestBody)
       .then(() => {
-        notification.success({ message: `Look deleted successfully.`, placement: "bottomRight", });
+        notification.success({ message: `Item deleted successfully.`, placement: "bottomRight", });
         props.setIsOutOfDate(true);
         console.log('Success!');
       }

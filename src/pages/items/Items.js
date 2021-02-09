@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
-import { Col, Row, Spin } from "antd";
+import { Col, Row, Spin, notification } from "antd";
 
 import ItemCard from "./ItemCard/ItemCard";
 import ItemForm from "./ItemForm/ItemForm";
@@ -64,6 +64,11 @@ const ItemsPage = () => {
     }
     ).catch(error => {
       console.log(error.message);
+      notification.error({
+        message: "Error",
+        description: error.message,
+        placement: "bottomRight",
+      });
       setError(error.message);
     });
   };

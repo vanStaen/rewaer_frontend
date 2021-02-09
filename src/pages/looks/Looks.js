@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
-import { Col, Row, Spin } from "antd";
+import { Col, Row, Spin, notification } from "antd";
 
 import LookCard from "./LookCard/LookCard";
 import LookForm from "./LookForm/LookForm";
 import AuthContext from "../../context/auth-context";
 
 import "./Looks.css";
-
 
 const LooksPage = () => {
 
@@ -63,6 +62,11 @@ const LooksPage = () => {
     }
     ).catch(error => {
       console.log(error.message);
+      notification.error({
+        message: "Error",
+        description: error.message,
+        placement: "bottomRight",
+      });
       setError(error.message);
     });
   };

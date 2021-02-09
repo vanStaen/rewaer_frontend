@@ -98,10 +98,10 @@ const LookForm = (props) => {
           onChange={fileSelectHandler}
         />
         {isUploading ?
-          (<label for="file">
+          (<label htmlFor="file">
             <Spin size="large" />
           </label>) :
-          (<label for="file">
+          (<label htmlFor="file">
             <p className="form-upload-drag-icon">
               <CameraOutlined />
             </p>

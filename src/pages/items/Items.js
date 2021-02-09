@@ -39,15 +39,11 @@ const ItemsPage = () => {
               `,
     };
 
-    async function fetchItems(token) {
+    async function fetchItems() {
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
         data: requestBody,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
         throw new Error("Unauthenticated!");
@@ -77,7 +73,6 @@ const ItemsPage = () => {
     return (<Col key={item._id}>
       <ItemCard
         item={item}
-        token={context.token}
         setIsOutOfDate={setIsOutOfDate}
       />
     </Col>);
@@ -96,7 +91,6 @@ const ItemsPage = () => {
           (<Row justify={"space-around"}>
             <Col>
               <ItemForm
-                token={context.token}
                 setIsOutOfDate={setIsOutOfDate}
               />
             </Col>

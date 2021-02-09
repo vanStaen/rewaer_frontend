@@ -21,16 +21,12 @@ const LookForm = (props) => {
     const formData = new FormData();
     formData.append('file', file);
 
-    async function postNewLook(token, requestBody) {
+    async function postNewLook(requestBody) {
 
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
         data: requestBody,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
         notification.error({ message: `Unauthenticated!`, placement: "bottomRight", });
@@ -41,12 +37,7 @@ const LookForm = (props) => {
     }
 
     try {
-      const res = await axios.post(process.env.REACT_APP_API_URL_UPLOAD, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: "Bearer " + props.token,
-        }
-      })
+      const res = await axios.post(process.env.REACT_APP_API_URL_UPLOAD, formData)
       // Create Look entry
       const mediaUrl = res.data.imageUrl
       const mediaUrlThumb = res.data.thumbUrl
@@ -65,7 +56,7 @@ const LookForm = (props) => {
               `
       };
       // post new Look
-      postNewLook(props.token, requestBody)
+      postNewLook(requestBody)
         .then(() => {
           notification.success({ message: `File uploaded successfully.`, placement: "bottomRight", });
           // retrigger parent component rendering

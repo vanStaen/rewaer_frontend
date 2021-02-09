@@ -16,15 +16,11 @@ const LookCard = (props) => {
   )
 
   const handleDelete = () => {
-    const deleteLook = async (token, requestBody) => {
+    const deleteLook = async (requestBody) => {
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
         data: requestBody,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
         notification.error({ message: `Unauthenticated!`, placement: "bottomRight", });
@@ -42,7 +38,7 @@ const LookCard = (props) => {
     };
     console.log("requestBody", requestBody);
     // delete Look
-    deleteLook(props.token, requestBody)
+    deleteLook(requestBody)
       .then(() => {
         notification.success({ message: `Look deleted successfully.`, placement: "bottomRight", });
         props.setIsOutOfDate(true);

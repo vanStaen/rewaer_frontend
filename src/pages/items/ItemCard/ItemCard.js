@@ -10,15 +10,11 @@ const { Meta } = Card;
 const ItemCard = (props) => {
 
   const handleDelete = () => {
-    const deleteItem = async (token, requestBody) => {
+    const deleteItem = async (requestBody) => {
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
         data: requestBody,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
         notification.error({ message: `Unauthenticated!`, placement: "bottomRight", });
@@ -36,7 +32,7 @@ const ItemCard = (props) => {
     };
     console.log("requestBody", requestBody);
     // delete Look
-    deleteItem(props.token, requestBody)
+    deleteItem(requestBody)
       .then(() => {
         notification.success({ message: `Item deleted successfully.`, placement: "bottomRight", });
         props.setIsOutOfDate(true);

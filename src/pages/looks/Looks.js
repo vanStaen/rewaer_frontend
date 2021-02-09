@@ -37,15 +37,11 @@ const LooksPage = () => {
               `,
     };
 
-    async function fetchLooks(token) {
+    async function fetchLooks() {
       const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",
         data: requestBody,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
       });
       if ((response.status !== 200) & (response.status !== 201)) {
         throw new Error("Unauthenticated!");
@@ -54,7 +50,7 @@ const LooksPage = () => {
       return looks;
     }
     // fetch Looks
-    fetchLooks(context.token).then((resData) => {
+    fetchLooks().then((resData) => {
       const looks = resData.data.looks;
       setLooks(looks);
       setIsLoading(false);
@@ -75,7 +71,6 @@ const LooksPage = () => {
     return (<Col key={look._id}>
       <LookCard
         look={look}
-        token={context.token}
         setIsOutOfDate={setIsOutOfDate}
       />
     </Col>);
@@ -94,7 +89,6 @@ const LooksPage = () => {
           (<Row justify={"space-around"}>
             <Col>
               <LookForm
-                token={context.token}
                 setIsOutOfDate={setIsOutOfDate}
               />
             </Col>

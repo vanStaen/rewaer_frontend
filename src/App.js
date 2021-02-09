@@ -92,7 +92,7 @@ class App extends Component {
       let dateNow = new Date();
       if (decodedRefreshToken.exp < Math.floor(dateNow.getTime() / 1000)) {
         console.log("[script] REFRESH TOKEN HAS EXPIRED!");
-        this.context.logout();
+        this.logout();
       }
     }
 
@@ -105,7 +105,9 @@ class App extends Component {
       if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
         console.log("[script] TOKEN HAS EXPIRED!");
         this.setState({token: null});
+        return null
       }
+      return this.state.token
     }
 
     // Refresh token if token missing
@@ -123,7 +125,7 @@ class App extends Component {
       })
         .then((res) => {
           if (res.status !== 201) {
-            this.context.logout();
+            this.logout();
             throw new Error("Error when refreshing the token!");
           }
           return res.json();
@@ -135,10 +137,10 @@ class App extends Component {
               resData.token,
               resData.refreshToken
             );
+            return resData.token
           }
         })
         .catch((err) => {
-          this.context.logout();
           console.log(err);
         });
     }
@@ -184,18 +186,21 @@ class App extends Component {
     this.dummyCall();
 
     // Axios Interceptors
-    axios.interceptors.request.use((config) => {
+    axios.interceptors.request.use( async (config) => {
+      const newToken = await this.getNewToken();
       if (DEBUG) {
-        console.log("[Axios Interceptor]")
+        console.log("[Axios Interceptor] Token: ", newToken)
         //console.info("✉️ ", config);
       }
-      this.getNewToken();
-      return Promise.resolve(config);
+      config.headers = { 
+        'Authorization': `Bearer ${newToken}`,
+        'Content-Type': 'application/json'
+      }
+      return config;
     }, (error) => {
       if (DEBUG) { console.error("✉️ ", error); }
       return Promise.reject(error);
     });
-
     //show tokens
     if (process.env.NODE_ENV === "development") {
       console.log("[start] Access Token:  ", this.state.token);

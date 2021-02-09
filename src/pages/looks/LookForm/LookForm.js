@@ -92,7 +92,7 @@ const LookForm = (props) => {
       >
         <input
           type="file"
-          class="inputfile"
+          className="inputfile"
           name="inputfile"
           id="file"
           onChange={fileSelectHandler}

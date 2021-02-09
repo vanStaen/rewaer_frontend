@@ -104,7 +104,7 @@ class App extends Component {
       let dateNow = new Date();
       if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
         console.log("[script] TOKEN HAS EXPIRED!");
-        this.state.token = null;
+        this.setState({token: null});
       }
     }
 

@@ -17,10 +17,10 @@ const LooksPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    LoadLooks();
+    loadLooks();
   }, [isOutOfDate])
 
-  const LoadLooks = async () => {  
+  const loadLooks = async () => {  
     try {
       const looks = await fetchLooks();
       setLooks(looks);

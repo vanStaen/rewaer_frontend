@@ -196,6 +196,10 @@ class App extends Component {
         'Authorization': `Bearer ${newToken}`,
         'Content-Type': 'application/json'
       }
+      config.validateStatus = (status) => {
+        console.log(status);
+        return true;
+      }
       return config;
     }, (error) => {
       if (DEBUG) { console.error("✉️ ", error); }

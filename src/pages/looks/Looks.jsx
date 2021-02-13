@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { Col, Row, Spin, notification } from "antd";
+import { Col, Row, Spin } from "antd";
 
 import fetchLooks from './fetchLooks';
 
@@ -20,6 +20,20 @@ const LooksPage = () => {
     loadLooks();
   }, [isOutOfDate])
 
+  // Use Callback
+  /* mobx store
+  @observable
+  looks
+  isloading
+  isOutOfDate
+  @action
+  loadLooks(){ 
+    loadlooks() 
+    set hier the looks
+    // await -> run_in_action  
+  }
+  */
+
   const loadLooks = async () => {  
     try {
       const looks = await fetchLooks();
@@ -28,11 +42,6 @@ const LooksPage = () => {
       setIsOutOfDate(false);
     } catch (error) {
         console.log(error.message);
-        notification.error({
-          message: "Error",
-          description: error.message,
-          placement: "bottomRight",
-        });
         setError(error.message);
     }
   }

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import { Redirect } from "react-router-dom";
-import { Col, Row, Spin, notification } from "antd";
+import { Col, Row, Spin } from "antd";
 
 import fetchItems from './fetchItems';
 
@@ -28,11 +28,6 @@ const ItemsPage = () => {
       setIsOutOfDate(false);
     } catch (error) {
         console.log(error.message);
-        notification.error({
-          message: "Error",
-          description: error.message,
-          placement: "bottomRight",
-        });
         setError(error.message);
     }   
   };

@@ -40,6 +40,7 @@ const ItemForm = (props) => {
       // Create Item entry
       const mediaUrl = res.data.imageUrl
       const mediaUrlThumb = res.data.thumbUrl
+      const mediaUrlMedium = res.data.mediumUrl
       const title = moment().format('DD.MM.YYYY');
       const requestBody = {
         query: `
@@ -47,6 +48,7 @@ const ItemForm = (props) => {
                 createItem(
                   itemInput: { mediaUrl: "${mediaUrl}", 
                                mediaUrlThumb: "${mediaUrlThumb}",
+                               mediaUrlMedium: "${mediaUrlMedium}",
                                title: "${title}" }
                 ) {
                   _id

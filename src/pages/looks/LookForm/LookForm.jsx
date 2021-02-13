@@ -41,6 +41,7 @@ const LookForm = (props) => {
       // Create Look entry
       const mediaUrl = res.data.imageUrl
       const mediaUrlThumb = res.data.thumbUrl
+      const mediaUrlMedium = res.data.mediumUrl
       const title = moment().format('DD.MM.YYYY');
       const requestBody = {
         query: `
@@ -48,6 +49,7 @@ const LookForm = (props) => {
                 createLook(
                   lookInput: { mediaUrl: "${mediaUrl}", 
                                mediaUrlThumb: "${mediaUrlThumb}",
+                               mediaUrlMedium: "${mediaUrlMedium}",
                                title: "${title}" }
                 ) {
                   _id

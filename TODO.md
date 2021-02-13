@@ -2,13 +2,12 @@
 
 ## To-dos:
 
-- [ ] On loading error, show error, instead of spinner
-- [ ] On RefreshToken not found in db > logout
 
+- [ ] On RefreshToken not found in db > logout
 - [ ] First refactoring round:
   - [x] Rewrite fetch to use axios if auth relevant
   - [x] as many stateless component as possible
-  - [ ] check state usage in already created component
+  - [x] check state usage in already created component
   - [x] Check class vs function component
   - [ ] Take API-fetch-code, out from component
 - [ ] Handle new account created
@@ -20,6 +19,7 @@
 - [ ] Notification if auth server is down
 - [ ] Use custom image component for images
 - [ ] Create own Card component
+- [ ] infinite scrolling + lazy loading
 
 ## Completed ✓
 
@@ -53,3 +53,4 @@
   - [x] Handling request in Backend
   - [x] Backend to AWS S3
   - [x] Create Thumbnail on upload
+- [X] On loading error, show error and redirect

@@ -20,6 +20,7 @@
 - [ ] Use custom image component for images
 - [ ] Create own Card component
 - [ ] infinite scrolling + lazy loading
+- [ ] On nofile select, do not create item/look
 
 ## Completed ✓
 

@@ -16,8 +16,6 @@ import AuthContext from "./context/auth-context";
 
 import "./App.css";
 
-const DEBUG = process.env.NODE_ENV === "development";
-
 const openNotification = (msg, desc, showtime, type) => {
   notification.open({
     message: msg,
@@ -80,10 +78,6 @@ class App extends Component {
 
   getNewToken = () => {
     const refreshToken = localStorage.getItem("refreshToken");
-    if (process.env.NODE_ENV === "development") {
-      console.log("[script] Check access token");
-    }
-
     // Check if refreshtoken is expired
     if (refreshToken) {
       let decodedRefreshToken = jsonwebtoken.decode(refreshToken, {
@@ -91,11 +85,9 @@ class App extends Component {
       });
       let dateNow = new Date();
       if (decodedRefreshToken.exp < Math.floor(dateNow.getTime() / 1000)) {
-        console.log("[script] REFRESH TOKEN HAS EXPIRED!");
         this.logout();
       }
     }
-
     // Check if token is expired
     if (this.state.token) {
       let decodedToken = jsonwebtoken.decode(this.state.token, {
@@ -103,18 +95,13 @@ class App extends Component {
       });
       let dateNow = new Date();
       if (decodedToken.exp < Math.floor(dateNow.getTime() / 1000)) {
-        console.log("[script] TOKEN HAS EXPIRED!");
         this.setState({token: null});
         return null
       }
       return this.state.token
     }
-
     // Refresh token if token missing
     if (!this.state.token) {
-      if (process.env.NODE_ENV === "development") {
-        console.log("[script] Fetching a new token");
-      }
       let requestBody = { refreshToken: refreshToken };
       fetch(process.env.REACT_APP_AUTH_URL + "/token", {
         method: "POST",
@@ -148,11 +135,6 @@ class App extends Component {
 
   dummyCall() {
 
-    //show tokens
-    if (process.env.NODE_ENV === "development") {
-      console.log("[start] Call dummy endpoint");
-    }
-
     // call the the dummy endpoint to wake the backend.
     let requestBody = {
       query: `
@@ -174,7 +156,6 @@ class App extends Component {
         return res.json();
       })
       .catch((err) => {
-        console.log("[start] Error connecting to the back end");
         openNotification("Connection to server failed!",
           "The connection could not be established with the backend server.", 0, "warning");
         console.log(err);
@@ -188,10 +169,6 @@ class App extends Component {
     // Axios Interceptors
     axios.interceptors.request.use( async (config) => {
       const newToken = await this.getNewToken();
-      if (DEBUG) {
-        console.log("[Axios Interceptor] Token: ", newToken)
-        //console.info("✉️ ", config);
-      }
       config.headers = { 
         'Authorization': `Bearer ${newToken}`,
         'Content-Type': 'application/json'
@@ -202,15 +179,8 @@ class App extends Component {
       }
       return config;
     }, (error) => {
-      if (DEBUG) { console.error("✉️ ", error); }
       return Promise.reject(error);
     });
-    //show tokens
-    if (process.env.NODE_ENV === "development") {
-      console.log("[start] Access Token:  ", this.state.token);
-      console.log("[start] Refresh Token:  ", this.state.refreshToken);
-    }
-
   }
 
   render() {

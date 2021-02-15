@@ -66,7 +66,7 @@ class App extends Component {
       .then((res) => {
         if (res.status !== 204) {
           openNotification("Error " + res.status,
-            "Error on logout: The refresh token was not found in the token database.", 0, "error");
+            "Error on logout: The refresh token was not found in the token database.", 3, "error");
           throw new Error("Error when logout!"); // Probably was the refresh not found in the db
         }
         openNotification("You have successfully logged out.", "", 3, "success");

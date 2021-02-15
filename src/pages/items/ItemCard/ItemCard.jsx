@@ -22,6 +22,7 @@ const ItemCard = (props) => {
         notification.success({
           message: `Item deleted successfully.`,
           placement: "bottomRight",
+          icon: <DeleteOutlined style={{ color: "green" }} />,
         });
         props.setIsOutOfDate(true);
         console.log("Success!");

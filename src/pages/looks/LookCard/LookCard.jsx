@@ -22,6 +22,7 @@ const LookCard = (props) => {
         notification.success({
           message: `Look deleted successfully.`,
           placement: "bottomRight",
+          icon: <DeleteOutlined style={{ color: "green" }} />,
         });
         props.setIsOutOfDate(true);
         console.log("Success!");

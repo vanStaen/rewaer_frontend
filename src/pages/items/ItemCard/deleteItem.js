@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export default async function deleteLook(id) {
+export default async function deleteItem(id) {
 
     const requestBody = {
         query: `
             mutation {
-                deleteLook(lookId: "${id}") {
+                deleteItem(lookId: "${id}") {
                 _id
                 }
             }

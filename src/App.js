@@ -171,7 +171,9 @@ class App extends Component {
       const newToken = await this.getNewToken();
       config.headers = { 
         'Authorization': `Bearer ${newToken}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'crossDomain': true,
       }
       config.validateStatus = (status) => {
         return true;

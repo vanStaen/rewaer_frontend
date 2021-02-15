@@ -35,8 +35,6 @@ export default async function patchTitle(title, id, type ) {
         throw new Error("Type missing!");
     }
 
-    console.log(requestBody);
-
     const response = await axios({
         url: process.env.REACT_APP_API_URL,
         method: "POST",

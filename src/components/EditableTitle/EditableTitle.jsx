@@ -17,14 +17,10 @@ const EditableTitle = (props) => {
 
   const patchTitleInDB = (title) => {
     // fetch Entries
-    patchTitle(title, props.id, props.type)
-      .then((resData) => {
-        console.log("Sucess", resData);
-      })
-      .catch((error) => {
-        notification.error({ description: `Unauthorized! Please login.` });
-        console.log("error", error.message);
-      });
+    patchTitle(title, props.id, props.type).catch((error) => {
+      notification.error({ description: `Unauthorized! Please login.` });
+      console.log("error", error.message);
+    });
   };
 
   const handleEditChange = (e) => {

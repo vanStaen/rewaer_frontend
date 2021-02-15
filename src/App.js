@@ -172,7 +172,6 @@ class App extends Component {
       config.headers = { 
         'Authorization': `Bearer ${newToken}`,
         'Content-Type': 'application/json',
-        'crossDomain': true,
       }
       config.validateStatus = (status) => {
         return true;

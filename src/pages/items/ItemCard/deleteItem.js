@@ -5,7 +5,7 @@ export default async function deleteItem(id) {
     const requestBody = {
         query: `
             mutation {
-                deleteItem(lookId: "${id}") {
+                deleteItem(itemId: "${id}") {
                 _id
                 }
             }

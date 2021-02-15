@@ -174,7 +174,6 @@ class App extends Component {
         'Content-Type': 'application/json'
       }
       config.validateStatus = (status) => {
-        console.log(status);
         return true;
       }
       return config;

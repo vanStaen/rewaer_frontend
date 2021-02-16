@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import { Col, Row, Spin } from "antd";
 
-import fetchLooks from './fetchLooks';
+import fetchLooks from "./fetchLooks";
 
 import LookCard from "./LookCard/LookCard";
 import LookForm from "./LookForm/LookForm";
@@ -10,7 +9,6 @@ import LookForm from "./LookForm/LookForm";
 import "./Looks.css";
 
 const LooksPage = () => {
-
   const [looks, setLooks] = useState([]);
   const [isOutOfDate, setIsOutOfDate] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +16,7 @@ const LooksPage = () => {
 
   useEffect(() => {
     loadLooks();
-  }, [isOutOfDate])
+  }, [isOutOfDate]);
 
   // Use Callback
   /* mobx store
@@ -34,49 +32,44 @@ const LooksPage = () => {
   }
   */
 
-  const loadLooks = async () => {  
+  const loadLooks = async () => {
     try {
       const looks = await fetchLooks();
       setLooks(looks);
       setIsLoading(false);
       setIsOutOfDate(false);
     } catch (error) {
-        console.log(error.message);
-        setError(error.message);
+      console.log(error.message);
+      setError(error.message);
     }
-  }
-  
-  const lookList = looks.map(look => {
-    return (<Col key={look._id}>
-      <LookCard
-        look={look}
-        setIsOutOfDate={setIsOutOfDate}
-      />
-    </Col>);
-  })
+  };
+
+  const lookList = looks.map((look) => {
+    return (
+      <Col key={look._id}>
+        <LookCard look={look} setIsOutOfDate={setIsOutOfDate} />
+      </Col>
+    );
+  });
 
   return (
     <div>
-      { error !== null ?
-          <Redirect from="/looks" to="/auth" exact />
-        :
-        isLoading ?
-          <div className="looks__spinner">
-            <Spin size="large" />
-          </div>
-          :
-          (<Row justify={"space-around"}>
-            <Col>
-              <LookForm
-                setIsOutOfDate={setIsOutOfDate}
-              />
-            </Col>
-            {lookList}
-          </Row>)
-      }
+      {error !== null ? (
+        error
+      ) : isLoading ? (
+        <div className="looks__spinner">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <Row justify={"space-around"}>
+          <Col>
+            <LookForm setIsOutOfDate={setIsOutOfDate} />
+          </Col>
+          {lookList}
+        </Row>
+      )}
     </div>
   );
-}
-
+};
 
 export default LooksPage;

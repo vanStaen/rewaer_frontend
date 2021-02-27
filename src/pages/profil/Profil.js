@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import AuthContext from "../../context/auth-context";
+import { authStore } from '../../stores/authStore';
 import { Typography } from "antd";
 const { Title, Paragraph } = Typography;
 
 
 class ProfilPage extends Component {
-
-  static contextType = AuthContext;
-
-  componentDidMount() {
-    //this.context.getNewToken();
-  }
 
   render() {
 
@@ -29,19 +23,19 @@ class ProfilPage extends Component {
 
             <Paragraph
               copyable={{
-                text: this.context.token,
+                text: authStore.token,
                 tooltips: ["Copy token", "Token copied!"],
               }}
             >
-              <b>Access Token : </b>{this.context.token}
+              <b>Access Token : </b>{authStore.token}
             </Paragraph>
             <Paragraph
               copyable={{
-                text: this.context.refreshToken,
+                text: authStore.refreshToken,
                 tooltips: ["Copy refresh token", "Refresh Token copied!"],
               }}
             >
-              <b>Refresh Token : </b>{this.context.refreshToken}
+              <b>Refresh Token : </b>{authStore.refreshToken}
             </Paragraph>
           </div>
         )}

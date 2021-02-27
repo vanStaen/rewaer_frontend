@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthContext from "../../context/auth-context";
+import { authStore } from '../../stores/authStore';
 import { NavLink } from "react-router-dom";
 import { Menu, Avatar, Badge } from "antd";
 import {
@@ -23,8 +23,6 @@ class MenuBar extends Component {
       menuSelected: null,
     };
   }
-
-  static contextType = AuthContext;
 
   handleClick = (event) => {
     this.setState({ menuSelected: event.key });
@@ -51,7 +49,7 @@ class MenuBar extends Component {
         >
           Rewær, the green Fashion App
         </span>
-        {this.context.refreshToken ? (
+        {authStore.refreshToken ? (
           <SubMenu
             key="profile"
             title={
@@ -65,7 +63,7 @@ class MenuBar extends Component {
               </NavLink>
             }
             style={{ float: "right" }}
-            onClick={this.context.logout}
+            onClick={authStore.logout}
           >
             <Menu.Item key="setting:2" icon={<LogoutOutlined />}>
               Logout
@@ -89,7 +87,7 @@ class MenuBar extends Component {
         <Menu.Item
           key="looks"
           icon={<CameraOutlined />}
-          disabled={!this.context.refreshToken}
+          disabled={!authStore.refreshToken}
           style={{ float: "left" }}
         >
           <NavLink to="/looks"> Looks</NavLink>
@@ -97,7 +95,7 @@ class MenuBar extends Component {
         <Menu.Item
           key="items"
           icon={<SkinOutlined />}
-          disabled={!this.context.refreshToken}
+          disabled={!authStore.refreshToken}
           style={{ float: "left" }}
         >
           <NavLink to="/items"> Items</NavLink>

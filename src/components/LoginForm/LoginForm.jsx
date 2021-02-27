@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import AuthContext from "../../context/auth-context";
-import { notification, Form, Input, Button, Checkbox } from "antd";
+import { authStore } from '../../stores/authStore';
+import { Form, Input, Button, Checkbox } from "antd";
+import { openNotification } from '../openNotification/openNotification';
 import {
   UserOutlined,
   MailOutlined,
@@ -11,16 +12,6 @@ import {
 
 import "./LoginForm.css";
 
-const openNotification = (msg, desc, showtime, type) => {
-  notification.open({
-    message: msg,
-    description: desc,
-    duration: showtime,
-    type: type,
-    placement: "bottomRight",
-  });
-};
-
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -28,8 +19,6 @@ class LoginForm extends Component {
       isLogin: true,
     };
   }
-
-  static contextType = AuthContext;
 
   switchModeHandler = () => {
     this.setState((prevState) => {
@@ -142,7 +131,7 @@ class LoginForm extends Component {
         // login
         fetchLogin().then((resData) => {
           console.log("[login] FetchLogin ended!");
-          this.context.login(resData.token, resData.refreshToken);
+          authStore.login(resData.token, resData.refreshToken);
           if (remember === true) {
             if (process.env.NODE_ENV === "development") {
               console.log('[login] Remember:', remember)

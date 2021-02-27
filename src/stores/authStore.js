@@ -1,16 +1,6 @@
 import { action, makeObservable, observable } from "mobx";
-import { notification } from "antd";
+import { openNotification } from "../components/openNotification/openNotification";
 import jsonwebtoken from "jsonwebtoken";
-
-const openNotification = (msg, desc, showtime, type) => {
-    notification.open({
-        message: msg,
-        description: desc,
-        duration: showtime,
-        type: type,
-        placement: "bottomRight",
-    });
-};
 
 export class authStoreImplementation {
 
@@ -27,7 +17,6 @@ export class authStoreImplementation {
         });
     }
 
-
     login = (token, refreshToken) => {
         this.token = token;
         this.refreshToken = refreshToken;
@@ -36,7 +25,6 @@ export class authStoreImplementation {
             console.log("[login] Refresh Token:  ", this.refreshToken);
         }
     };
-
 
     logout = () => {
         // Delete refreshtoken from localstorage, 

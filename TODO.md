@@ -2,7 +2,9 @@
 
 ## To-dos:
 
-
+- [ ] Implement MobX instead of using context
+  - [ ] Create an Authorisation Store to hanble token and login
+  - [ ] Create a store to handle profil data
 - [ ] On RefreshToken not found in db > logout
 - [ ] First refactoring round:
   - [x] Rewrite fetch to use axios if auth relevant

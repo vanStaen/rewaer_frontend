@@ -64,7 +64,6 @@ export class authStoreImplementation {
             let dateNow = new Date();
             if (decodedRefreshToken.exp < Math.floor(dateNow.getTime() / 1000)) {
                 this.logout();
-                return null;
             } else {
                 this.refreshToken = refreshToken;
             }

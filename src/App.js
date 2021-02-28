@@ -49,18 +49,18 @@ const App = observer(() => {
 
   useEffect(() => {
 
-    console.log("authStore.refreshToken", authStore.refreshToken);
-    console.log("authStore.token", authStore.token);
+    // On mount, update token
+    authStore.refreshToken && authStore.login(authStore.getNewToken(), authStore.refreshToken);
 
     dummyCall();
 
     // Axios Interceptors
     axios.interceptors.request.use(async (config) => {
-      const newToken = await authStore.getNewToken();
-      console.log("newToken", newToken);
-      console.log("authStore.token", authStore.token);
+      const token = authStore.token ?
+        authStore.token :
+        await authStore.getNewToken();
       config.headers = {
-        'Authorization': `Bearer ${newToken}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       }
       config.validateStatus = (status) => {

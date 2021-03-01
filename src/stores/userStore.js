@@ -1,6 +1,6 @@
 import { makeObservable, observable } from "mobx";
 
-export class userStoreImplementation {
+export class UserStore {
 
     user = JSON.parse(localStorage.getItem('user'));
     userId = localStorage.getItem('userId');
@@ -14,4 +14,4 @@ export class userStoreImplementation {
 
 }
 
-export const userStore = new userStoreImplementation();
+export const userStore = new UserStore();

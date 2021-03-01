@@ -2,7 +2,7 @@ import { action, makeObservable, observable } from "mobx";
 import { openNotification } from "../components/openNotification/openNotification";
 import jsonwebtoken from "jsonwebtoken";
 
-export class authStoreImplementation {
+export class AuthStore {
 
     token = null;
     refreshToken = localStorage.getItem("refreshToken") || null;
@@ -111,4 +111,4 @@ export class authStoreImplementation {
 
 }
 
-export const authStore = new authStoreImplementation();
+export const authStore = new AuthStore();

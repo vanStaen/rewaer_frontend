@@ -3,15 +3,12 @@
 ## To-dos:
 
 - [ ] Implement MobX instead of using context
-  - [ ] Create an Authorisation Store to hanble token and login
-  - [ ] Create a store to handle profil data
+  - [x] Create an Authorisation Store to hanble token and login
+  - [x] Create a store to handle profil data
+  - [ ] Route Store saved in context:
+    - [ ] Save all sub-Stores in a main store
+    - [ ] Save the main Store into the context
 - [ ] On RefreshToken not found in db > logout
-- [ ] First refactoring round:
-  - [x] Rewrite fetch to use axios if auth relevant
-  - [x] as many stateless component as possible
-  - [x] check state usage in already created component
-  - [x] Check class vs function component
-  - [ ] Take API-fetch-code, out from component
 - [ ] Handle new account created
   - [x] Show success message in App
   - [x] Handle errors from backend
@@ -57,3 +54,9 @@
   - [x] Backend to AWS S3
   - [x] Create Thumbnail on upload
 - [X] On loading error, show error and redirect
+- [x] First refactoring round:
+  - [x] Rewrite fetch to use axios if auth relevant
+  - [x] as many stateless component as possible
+  - [x] check state usage in already created component
+  - [x] Check class vs function component
+  - [x] Take API-fetch-code, out from component

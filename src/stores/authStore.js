@@ -20,10 +20,6 @@ export class AuthStore {
     login = (token, refreshToken) => {
         this.token = token;
         this.refreshToken = refreshToken;
-        if (process.env.NODE_ENV === "development") {
-            console.log("[login] Access Token:  ", this.token);
-            console.log("[login] Refresh Token:  ", this.refreshToken);
-        }
     };
 
     logout = () => {

@@ -77,9 +77,9 @@ export class AuthStore {
             }
         }
         // Refresh token if token missing
-        if (!this.token) {
+        if (!this.token) {            
             let requestBody = { refreshToken: this.refreshToken };
-            fetch(process.env.REACT_APP_AUTH_URL + "/token", {
+            return fetch(process.env.REACT_APP_AUTH_URL + "/token", {
                 method: "POST",
                 body: JSON.stringify(requestBody),
                 headers: {
